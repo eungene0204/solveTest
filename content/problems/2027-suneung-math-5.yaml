@@ -1,0 +1,47 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 5
+paperType: odd
+paperPage: 2
+paperCrop: [0.099, 0.120, 0.492, 0.212]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    다항함수 $f(x)$ 의 한 부정적분이 $F(x)=x^3-x^2+x$ 일 때, $\displaystyle\int_0^2 f(x)\,dx$ 의 값은? [3점]
+  choices: ["6", "7", "8", "9", "10"]
+format: choice
+answer:
+  value: "6"
+  choice: 1
+status: draft
+difficulty: basic
+concepts:
+  - { label: 정적분의 계산, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 부정적분, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  부정적분을 이미 알고 있다면, 정적분을 계산하려고 $f(x)$ 를 꼭 구해야 할까?
+firstIdea: |
+  미적분의 기본정리에 따라 $\displaystyle\int_a^b f(x)\,dx=F(b)-F(a)$ 이다. 한 부정적분 $F$ 가 주어졌으니 미분해서 $f$ 를 구할 필요 없이 끝값만 대입하면 된다.
+steps:
+  - title: 기본정리로 바꾼다
+    body: |
+      $$
+      \int_0^2 f(x)\,dx=F(2)-F(0)
+      $$
+    why: |
+      $F'(x)=f(x)$ 인 함수 하나만 있으면 된다. 다른 부정적분 $F(x)+C$ 를 써도 $C$ 는 빼면서 사라진다.
+  - title: 대입한다
+    body: |
+      $F(2)=8-4+2=6$, $F(0)=0$ 이므로 값은 $6$.
+    why: |
+      $F$ 가 다항식이라 그대로 대입하면 된다.
+pitfalls:
+  - |
+    주어진 식이 $f$ 가 아니라 부정적분 $F$ 라는 것을 놓치고 $F(x)$ 를 다시 적분하는 실수.
+  - |
+    $F(0)$ 을 빼는 것을 생략하는 습관. 여기서는 $F(0)=0$ 이라 답이 같지만, 다른 문제에서는 틀린다.
+related: [2027-suneung-math-17]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

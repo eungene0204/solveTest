@@ -1,0 +1,106 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 13
+paperType: odd
+paperPage: 5
+paperCrop: [0.099, 0.128, 0.492, 0.440]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    실수 $t$ 와 다항함수 $f(x)$ 에 대하여 함수 $g(t)$ 를
+
+    $$
+    g(t)=\int_0^2|f(x)-t|\,dx
+    $$
+
+    라 하자. &lt;보기&gt;에서 옳은 것만을 있는 대로 고른 것은? [4점]
+  boxTitle: 보기
+  conditions:
+    - |
+      ㄱ. $f(x)=-x+1$ 일 때, $g(0)=1$ 이다.
+    - |
+      ㄴ. $f(x)=x^2-4x$ 일 때,
+
+      $$
+      \begin{aligned}
+      g(-3)&=\int_0^1 f(x)\,dx\\
+      &\quad-\int_1^2 f(x)\,dx
+      \end{aligned}
+      $$
+
+      이다.
+    - |
+      ㄷ. $f(x)=x^2(x-4)$ 일 때,
+
+      $$
+      \begin{aligned}
+      g(\alpha)&=\int_0^1 f(x)\,dx\\
+      &\quad-\int_1^2 f(x)\,dx
+      \end{aligned}
+      $$
+
+      이면 $\alpha<f(1)$ 이다. (단, $\alpha$ 는 실수이다.)
+  choices: ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"]
+format: choice
+answer:
+  value: "ㄱ, ㄴ"
+  choice: 2
+status: draft
+difficulty: standard
+concepts:
+  - { label: 절댓값을 포함한 정적분, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 정적분과 넓이, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  $g(t)$ 는 곡선 $y=f(x)$ 와 가로선 $y=t$ 사이의 넓이다. 각 보기에서 $f(x)=t$ 가 되는 $x$ 가 어디인지 먼저 찾아보자. ㄴ과 ㄷ의 우변은 그 교점이 $x=1$ 일 때의 모양이다.
+firstIdea: |
+  $|f(x)-t|$ 의 절댓값을 풀려면 $f(x)=t$ 가 되는 $x$ 에서 구간을 나눠야 한다. 그래서 보기마다 교점의 위치를 먼저 본다. ㄴ·ㄷ의 우변 $\int_0^1 f-\int_1^2 f$ 는 "$x=1$ 에서 부호가 바뀔 때"의 꼴이고, ㄷ은 $g(t)$ 가 최소가 되는 $t$ 가 바로 그때라는 점을 쓴다.
+steps:
+  - title: ㄱ은 삼각형 두 개의 넓이
+    body: |
+      $g(0)=\displaystyle\int_0^2|1-x|\,dx$ 는 꼭짓점이 $(1,0)$ 인 두 직각삼각형의 넓이 합이므로 $\dfrac{1}{2}+\dfrac{1}{2}=1$. **참**.
+    why: |
+      절댓값 일차함수의 정적분은 그래프를 그려 넓이로 계산하는 것이 가장 빠르다.
+  - title: ㄴ은 부호가 바뀌는 곳이 $x=1$
+    body: |
+      $f(x)+3=x^2-4x+3=(x-1)(x-3)$ 이므로 $[0,1]$ 에서 $f(x)+3\ge0$, $[1,2]$ 에서 $f(x)+3\le0$.
+      $$
+      \begin{aligned}
+      g(-3)&=\int_0^1\{f(x)+3\}dx\\
+      &\quad-\int_1^2\{f(x)+3\}dx\\
+      &=\int_0^1 f(x)\,dx-\int_1^2 f(x)\,dx
+      \end{aligned}
+      $$
+      **참**.
+    why: |
+      두 구간의 길이가 모두 1이라 상수 3은 한 번 더해지고 한 번 빠져 상쇄된다.
+  - title: ㄷ은 $g(t)$ 의 최솟값
+    body: |
+      $f'(x)=3x^2-8x=x(3x-8)$ 이므로 $f$ 는 $[0,2]$ 에서 감소한다. $f(2)<t<f(0)$ 이면 $f(c)=t$ 인 $c$ 가 하나 있고, $y=t$ 보다 위인 구간의 길이는 $c$, 아래인 구간의 길이는 $2-c$ 다. $t$ 를 조금 올리면 위쪽 넓이는 줄고 아래쪽 넓이는 늘어서
+      $$
+      g'(t)=-c+(2-c)=2-2c
+      $$
+      $t$ 가 커지면 $c$ 는 작아지므로 $g'(t)$ 는 증가하고, $c=1$ 즉 $t=f(1)$ 에서만 $0$ 이 된다. 범위 밖에서는 $g'(t)=\mp2$ 다. 따라서 $g$ 는 $t=f(1)$ 에서만 최솟값을 갖고, 그 값은 $c=1$ 을 넣은
+      $$
+      \begin{aligned}
+      g\big(f(1)\big)&=\int_0^1 f(x)\,dx\\
+      &\quad-\int_1^2 f(x)\,dx
+      \end{aligned}
+      $$
+      다. 그러므로 $g(\alpha)$ 가 이 값이면 $\alpha=f(1)$ 뿐이고, $\alpha<f(1)$ 은 **거짓**.
+    why: |
+      우변을 직접 계산해 $g(\alpha)$ 의 방정식을 풀면 복잡해진다. 우변이 "$x=1$ 에서 나뉠 때"의 넓이라는 것을 알아보면, 그것이 $g$ 의 최솟값이고 최솟값을 주는 $t$ 가 하나뿐이라는 데서 끝난다.
+  - title: 고른다
+    body: |
+      옳은 것은 ㄱ, ㄴ이다.
+    why: |
+      보기 문제는 각 보기를 독립적으로 판정한 뒤 조합을 고른다.
+pitfalls:
+  - |
+    ㄴ에서 $f(x)-t$ 가 아니라 $f(x)$ 의 부호로 구간을 나누는 실수. 절댓값 안은 $f(x)+3$ 이다.
+  - |
+    ㄷ에서 $\alpha=f(1)$ 일 때 등식이 성립하는 것만 확인하고, 다른 $\alpha$ 도 가능한지 따지지 않는 실수. $g$ 가 최솟값을 한 점에서만 갖는다는 것까지 확인해야 거짓을 확정할 수 있다.
+related: [2027-suneung-math-9]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

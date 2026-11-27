@@ -1,0 +1,50 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 1
+paperType: odd
+paperPage: 1
+paperCrop: [0.099, 0.230, 0.492, 0.292]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    $\sqrt[3]{32}\times4^{-\frac{1}{3}}$ 의 값은? [2점]
+  choices: ["1", "2", "3", "4", "5"]
+format: choice
+answer:
+  value: "2"
+  choice: 2
+status: draft
+difficulty: basic
+concepts:
+  - { label: 지수법칙, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 거듭제곱근과 유리수 지수, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  32와 4를 같은 수의 거듭제곱으로 바꿔 보자. 무엇을 밑으로 잡으면 좋을까?
+firstIdea: |
+  거듭제곱근과 음의 유리수 지수가 섞여 있으면 그대로 계산하기 어렵다. $32=2^5$, $4=2^2$ 이므로 밑을 2로 통일하면 지수의 덧셈 한 번으로 끝난다.
+steps:
+  - title: 밑을 2로 통일한다
+    body: |
+      $$
+      \begin{aligned}
+      \sqrt[3]{32}&=\sqrt[3]{2^5}=2^{\frac{5}{3}}\\
+      4^{-\frac{1}{3}}&=\left(2^2\right)^{-\frac{1}{3}}=2^{-\frac{2}{3}}
+      \end{aligned}
+      $$
+    why: |
+      $\sqrt[n]{a^m}=a^{\frac{m}{n}}$, $\left(a^m\right)^n=a^{mn}$ 을 쓰면 거듭제곱근과 음의 지수가 모두 같은 꼴의 지수가 된다.
+  - title: 지수를 더한다
+    body: |
+      $2^{\frac{5}{3}}\times2^{-\frac{2}{3}}=2^{\frac{5}{3}-\frac{2}{3}}=2^1=2$
+    why: |
+      밑이 같은 거듭제곱의 곱은 지수의 합이다.
+pitfalls:
+  - |
+    $4^{-\frac{1}{3}}$ 을 $-4^{\frac{1}{3}}$ 이나 $\frac{1}{4^3}$ 로 읽는 실수. 음의 지수는 역수, 분모의 3은 세제곱근을 뜻한다.
+  - |
+    $\sqrt[3]{32}$ 를 $2^{\frac{3}{5}}$ 로 거꾸로 쓰는 실수. 지수는 (안쪽 지수)÷(근호의 차수)다.
+related: [2027-suneung-math-16]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

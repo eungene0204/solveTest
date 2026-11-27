@@ -1,0 +1,53 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 11
+paperType: odd
+paperPage: 4
+paperCrop: [0.099, 0.128, 0.492, 0.230]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    다항함수 $f(x)$ 에 대하여 곡선 $y=x^2f(x)$ 위의 점 $\big(1,\,f(1)\big)$ 에서의 접선의 방정식이 $y=7x-11$ 일 때, $f'(1)$ 의 값은? [4점]
+  choices: ["11", "12", "13", "14", "15"]
+format: choice
+answer:
+  value: "15"
+  choice: 5
+status: draft
+difficulty: standard
+concepts:
+  - { label: 접선의 방정식, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 곱의 미분법, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  접선의 방정식이 알려 주는 것은 두 가지다. 접점의 $y$ 좌표와, 그 점에서 곡선의 기울기.
+firstIdea: |
+  $h(x)=x^2f(x)$ 라 하면 접선 $y=7x-11$ 에서 $h(1)=-4$ 와 $h'(1)=7$ 을 읽을 수 있다. $h(1)$ 은 곧 $f(1)$ 이고, $h'(1)$ 에는 $f(1)$ 과 $f'(1)$ 이 함께 들어 있으므로 두 식을 이어서 $f'(1)$ 을 구한다.
+steps:
+  - title: 접점에서 $f(1)$ 을 구한다
+    body: |
+      $h(1)=1^2\times f(1)=f(1)$ 이고 점 $\big(1,\,f(1)\big)$ 은 접선 위에도 있으므로 $f(1)=7-11=-4$.
+    why: |
+      접점은 곡선과 접선 위에 동시에 있다.
+  - title: 기울기 식을 세운다
+    body: |
+      $h'(x)=2xf(x)+x^2f'(x)$ 이므로
+      $$
+      h'(1)=2f(1)+f'(1)=7
+      $$
+    why: |
+      접선의 기울기는 접점에서의 미분계수다. $x^2$ 과 $f(x)$ 의 곱이므로 곱의 미분법을 쓴다.
+  - title: $f'(1)$ 을 구한다
+    body: |
+      $2\times(-4)+f'(1)=7$ 이므로 $f'(1)=15$.
+    why: |
+      첫 단계에서 구한 $f(1)$ 을 대입하면 미지수가 $f'(1)$ 하나만 남는다.
+pitfalls:
+  - |
+    $h'(1)=f'(1)$ 로 생각해 기울기 7을 그대로 $f'(1)$ 로 쓰는 실수. 미분하는 대상은 $x^2f(x)$ 다.
+  - |
+    $f(1)=-4$ 의 부호를 놓쳐 $f'(1)=7-8$ 로 계산하는 실수.
+related: [2027-suneung-math-2]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

@@ -1,0 +1,64 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 10
+paperType: odd
+paperPage: 3
+paperCrop: [0.513, 0.128, 0.902, 0.228]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    삼각형 ABC에서 $\sin A:\sin B=3:4$ 이고 $\cos C=\dfrac{1}{3}$ 이다. 삼각형 ABC의 외접원의 넓이가 $17\pi$ 일 때, 선분 BC의 길이는? [4점]
+  choices: ['$3\sqrt{3}$', '$4\sqrt{2}$', '$4\sqrt{3}$', '$5\sqrt{2}$', '$3\sqrt{6}$']
+format: choice
+answer:
+  value: '4\sqrt{2}'
+  choice: 2
+status: draft
+difficulty: standard
+concepts:
+  - { label: 사인법칙, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 코사인법칙, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  사인의 비는 어떤 길이의 비로 바꿀 수 있을까? 외접원의 반지름과 $\cos C$ 로는 어느 변의 길이를 바로 구할 수 있을까?
+firstIdea: |
+  사인법칙 $\dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R$ 에서 $\sin A:\sin B=a:b$ 이다. 외접원의 넓이로 $R$ 을, $\cos C$ 로 $\sin C$ 를 알 수 있으니 $c$ 가 정해진다. 남은 $a, b$ 는 각 $C$ 를 낀 코사인법칙으로 $c$ 와 연결한다.
+steps:
+  - title: 변의 비와 외접원의 반지름
+    body: |
+      $a=\overline{\mathrm{BC}},\ b=\overline{\mathrm{CA}},\ c=\overline{\mathrm{AB}}$ 라 하면 사인법칙에서 $a:b=3:4$ 이므로 $a=3k,\ b=4k\ (k>0)$.
+
+      외접원의 반지름을 $R$ 이라 하면 $\pi R^2=17\pi$ 이므로 $R=\sqrt{17}$.
+    why: |
+      사인법칙에서 각 변의 길이는 대각의 사인값에 $2R$ 을 곱한 값이라, 사인의 비가 곧 변의 비다.
+  - title: $c$ 를 구한다
+    body: |
+      $\sin C=\sqrt{1-\dfrac{1}{9}}=\dfrac{2\sqrt{2}}{3}$ 이므로
+      $$
+      \begin{aligned}
+      c&=2R\sin C=\frac{4\sqrt{34}}{3}\\
+      c^2&=\frac{544}{9}
+      \end{aligned}
+      $$
+    why: |
+      삼각형의 내각이라 $\sin C>0$ 이다. 외접원과 직접 연결되는 변은 사인값을 아는 각 $C$ 의 대변 $c$ 다.
+  - title: 코사인법칙으로 $k$ 를 구한다
+    body: |
+      $$
+      \begin{aligned}
+      c^2&=a^2+b^2-2ab\cos C\\
+      &=9k^2+16k^2-8k^2=17k^2
+      \end{aligned}
+      $$
+      $17k^2=\dfrac{544}{9}$ 에서 $k^2=\dfrac{32}{9}$, $k=\dfrac{4\sqrt{2}}{3}$. 따라서 $\overline{\mathrm{BC}}=a=3k=4\sqrt{2}$.
+    why: |
+      각 $C$ 를 낀 두 변이 $a, b$ 이므로 코사인법칙이 $k$ 하나에 대한 식이 된다.
+pitfalls:
+  - |
+    선분 BC는 각 $A$ 의 대변 $a$ 다. 외접원으로 바로 구한 $c=\overline{\mathrm{AB}}$ 를 답으로 쓰지 않는다.
+  - |
+    외접원의 넓이 $17\pi$ 에서 $R=17$ 로 두는 실수. 넓이는 $\pi R^2$ 이다.
+related: []
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

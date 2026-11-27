@@ -1,0 +1,56 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 7
+paperType: odd
+paperPage: 2
+paperCrop: [0.513, 0.128, 0.902, 0.212]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    함수 $f(x)=x^3+ax^2-3ax+1$ 이 $x=1$ 에서 극소일 때, 함수 $f(x)$ 의 극댓값은? (단, $a$ 는 상수이다.) [3점]
+  choices: ["31", "28", "25", "22", "19"]
+format: choice
+answer:
+  value: "28"
+  choice: 2
+  choiceOtherPaper: 4   # 짝수형 ④
+status: draft
+difficulty: basic
+concepts:
+  - { label: 함수의 극대·극소, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  $x=1$ 에서 극소라는 말은 $f'(1)$ 에 대해 무엇을 알려 줄까?
+firstIdea: |
+  미분가능한 함수가 $x=1$ 에서 극값을 가지면 $f'(1)=0$ 이다. 이 식 하나로 $a$ 가 정해지고, 그다음 $f'(x)=0$ 의 다른 근에서 극댓값을 계산한다.
+steps:
+  - title: $f'(1)=0$ 으로 $a$ 를 구한다
+    body: |
+      $f'(x)=3x^2+2ax-3a$ 이므로 $f'(1)=3+2a-3a=3-a=0$, $a=3$.
+    why: |
+      극값을 갖는 점에서 미분계수는 0이다.
+  - title: 극대가 되는 점을 찾는다
+    body: |
+      $$
+      \begin{aligned}
+      f'(x)&=3x^2+6x-9\\
+      &=3(x+3)(x-1)
+      \end{aligned}
+      $$
+      $f'(x)$ 의 부호는 $x=-3$ 에서 양에서 음으로, $x=1$ 에서 음에서 양으로 바뀐다. 따라서 $x=-3$ 에서 극대, $x=1$ 에서 극소다.
+    why: |
+      $x=1$ 에서 실제로 극소인지도 함께 확인된다. 최고차항의 계수가 양수인 삼차함수는 작은 근에서 극대, 큰 근에서 극소다.
+  - title: 극댓값을 계산한다
+    body: |
+      $f(x)=x^3+3x^2-9x+1$ 이므로 $f(-3)=-27+27+27+1=28$.
+    why: |
+      묻는 것은 극대가 되는 $x$ 가 아니라 그때의 함숫값이다.
+pitfalls:
+  - |
+    $f'(1)$ 을 계산할 때 $2a-3a=-a$ 를 놓쳐 $a$ 를 잘못 구하는 실수.
+  - |
+    극댓값 대신 극솟값 $f(1)=-4$ 를 구하거나, 극대가 되는 $x$ 값 $-3$ 에서 멈추는 실수.
+related: [2027-suneung-math-19]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []
