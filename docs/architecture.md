@@ -6,8 +6,8 @@
 
 ```
 content/problems/*.yaml ──┐
-src/figures/*.svg ────────┤   Astro 5 빌드 (정적)        정적 호스팅
-src/lib/exams.ts ─────────┼──▶  zod 스키마 검사   ──▶  dist/  ──▶  (서버·DB 없음)
+src/figures/*.svg ────────┤   Next.js 정적 export        정적 호스팅
+src/lib/exams.ts ─────────┼──▶  zod 스키마 검사   ──▶  out/   ──▶  (서버·DB 없음)
                           │     공개 조건 검사
                           │     KaTeX 서버 렌더링
                           └──   페이지 생성
@@ -30,19 +30,19 @@ src/lib/exams.ts ─────────┼──▶  zod 스키마 검사  
 | 위치 | 역할 |
 | - | - |
 | `content/problems/<id>.yaml` | 문항 하나 = 파일 하나. id = `<학년도>-<시험>-<과목>-<번호>` |
-| `src/content.config.ts` | content layer(glob 로더)로 YAML을 읽어 `problemSchema`로 검증 |
 | `src/lib/schema.ts` | 문항 스키마, 검수 단계, **`publishBlockers`(공개 조건의 유일한 기준)** |
 | `src/lib/exams.ts` | 회차 등록부: 문항 수, 공식 문제지·정답표 링크, 이용 조건 기록(`rights`), 주소·제목 헬퍼 |
-| `src/lib/problems.ts` | 컬렉션 조회, 목록 노출(`isListed`)·페이지 생성(`hasPage`) 규칙 |
+| `src/lib/problems.ts` | YAML을 읽어 `problemSchema`로 검증(실패 시 빌드 중단), 목록 노출(`isListed`)·페이지 생성(`hasPage`) 규칙, 그림 SVG 읽기 |
+| `src/lib/meta.ts` | 페이지 `<head>` 메타데이터(`pageMeta`): 제목, canonical, noindex(미리보기는 전부) |
 | `src/lib/query.ts` | 검색어 해석(NFKC, 연도·시험·번호 표현)과 검색 |
 | `src/lib/markdown.ts` | 마크다운 + KaTeX 렌더링. 수식 오류는 빌드 실패 |
 | `src/lib/track.ts` | 측정 이벤트(dataLayer). 두 번째 문항 열람 판정 |
 | `src/figures/<id>.svg` | 문제 그림. 문항 페이지에 인라인으로 삽입 |
-| `src/pages/[kind]/[year]/[subject]/[number].astro` | 문항 페이지 |
-| `src/pages/[kind]/[year]/[subject]/index.astro` | 회차 문항 목록 |
-| `src/pages/search.astro` | 검색(색인 JSON 내장, 클라이언트에서 해석) |
-| `src/pages/sitemap.xml.ts`, `robots.txt.ts` | 공개 문항 기준 사이트맵, 모드별 robots |
-| `src/components/ReportForm.astro`, `AdSlot.astro` | 오류 신고, 광고 자리 |
+| `src/app/layout.tsx` | 공통 머리글·바닥글, KaTeX·전역 CSS, 측정 시작 |
+| `src/app/[kind]/[year]/[subject]/[[...number]]/` | `page.tsx`가 주소를 보고 `ExamView`(회차 문항 목록) 또는 `ProblemView`(문항 페이지)로 나눈다 |
+| `src/app/search/` | 검색. 색인은 빌드 시 페이지에 넣고 `SearchResults`(클라이언트)가 `?q=`를 해석 |
+| `src/app/sitemap.ts`, `robots.ts`, `not-found.tsx` | 공개 문항 기준 사이트맵, 모드별 robots, 404 |
+| `src/components/` | `ReportForm`·`AdSlot`·`Tracking`·`OpenSolutionOnHash`(클라이언트), `SearchForm` |
 | `scripts/` | 초안 생성(`new`), 원문 대조 이미지 생성(`crop`, macOS PDFKit) |
 | `tests/` | 검색어 해석, 공개 조건 (Vitest) |
 
@@ -51,7 +51,7 @@ src/lib/exams.ts ─────────┼──▶  zod 스키마 검사  
 필드 정의와 주석은 `src/lib/schema.ts`가 원본이다. 주요 묶음:
 
 - **식별**: `exam {year, kind, subject, part}`, `number`, `paperType`(odd/even), `paperPage`
-- **문제 본문**: `problem {body, figure?, conditions?, after?, choices?}` → 화면 순서도 이 순서
+- **문제 본문**: `problem {body, figure?, conditions?, boxTitle?, middle?, conditions2?, after?, choices?}` → 화면 순서도 이 순서
 - **정답**: `format`(choice/short), `answer {value, choice?, choiceOtherPaper?}`
 - **해설**: `hint`, `firstIdea`, `steps[] {title, body, why}`, `pitfalls[]`, `concepts[]`(2015·2022 과목명), `related[]`
 - **운영**: `status`(draft/published/withdrawn), `difficulty`, `reviews[]`, `changelog[]`, `minutes`

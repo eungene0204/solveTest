@@ -23,7 +23,7 @@ const paperUrl = (year, kind) => {
 };
 
 async function paperFile(url) {
-  const file = `${cacheDir}/${url.split('/').pop()}`;
+  const file = `${cacheDir}/${url.split('/').pop().replace(/[^\w.-]/g, '_')}`;
   if (!existsSync(file)) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`${url} → ${res.status}`);

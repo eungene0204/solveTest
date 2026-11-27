@@ -1,0 +1,58 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 19
+paperType: odd
+paperPage: 7
+paperCrop: [0.099, 0.502, 0.492, 0.588]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    $-2\le x\le2$ 인 모든 실수 $x$ 에 대하여 부등식
+
+    $$
+    -k\le2x^3+3x^2-12x-8\le k
+    $$
+
+    가 성립하도록 하는 양수 $k$ 의 최솟값을 구하시오. [3점]
+format: short
+answer:
+  value: "15"
+status: published
+difficulty: basic
+concepts:
+  - { label: 닫힌구간에서의 최댓값·최솟값, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  부등식이 모든 $x$ 에서 성립하려면 가운데 식의 최댓값과 최솟값이 각각 어떤 조건을 만족해야 할까?
+firstIdea: |
+  $p(x)=2x^3+3x^2-12x-8$ 이라 하면 조건은 "$[-2,\,2]$ 에서 $p$ 의 최솟값 $\ge-k$, 최댓값 $\le k$" 다. 그래서 닫힌구간에서 최댓값과 최솟값을 구하는 것으로 바뀐다.
+steps:
+  - title: 극값과 끝값을 구한다
+    body: |
+      $p'(x)=6x^2+6x-12=6(x+2)(x-1)$.
+      $p(-2)=12$, $p(1)=-15$, $p(2)=-4$.
+    why: |
+      닫힌구간의 최댓값·최솟값은 극값과 양 끝값 중에 있다. 여기서는 $x=-2$ 가 극점이면서 끝점이다.
+  - title: $k$ 의 범위를 정한다
+    body: |
+      최댓값 12, 최솟값 $-15$ 이므로 $12\le k$ 이고 $-15\ge-k$, 즉 $k\ge15$. 최솟값은 15.
+    why: |
+      두 조건을 동시에 만족해야 하므로 더 큰 쪽인 15가 기준이 된다.
+pitfalls:
+  - |
+    최댓값 12만 보고 $k=12$ 로 답하는 실수. 아래쪽 조건 $-15\ge-k$ 도 확인한다.
+  - |
+    $p(1)$ 을 계산할 때 $2+3-12-8=-15$ 의 부호 실수.
+related: [2027-suneung-math-19, 2026-suneung-math-9]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

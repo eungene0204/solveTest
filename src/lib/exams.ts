@@ -1,7 +1,7 @@
 /**
  * 시험 회차 등록부.
  * 회차마다 공식 원문 링크와 이용 조건 확인 기록을 함께 둔다(기획안 "원문 이용과 시험별 확장").
- * 이 파일은 astro:content에 의존하지 않으므로 클라이언트 스크립트와 테스트에서도 import할 수 있다.
+ * 이 파일은 파일 시스템(node:fs)에 의존하지 않으므로 클라이언트 스크립트와 테스트에서도 import할 수 있다.
  */
 
 export const EXAM_KINDS = ['suneung', 'june', 'sept'] as const;
@@ -79,7 +79,9 @@ export const EXAMS: Exam[] = [
     part: 'common',
     count: 22,
     curriculum: '2015',
-    // TODO: 평가원 공식 문제지 PDF 주소와 정답표 위치를 확인해 채운다.
+    // 평가원 수능 기출문제 게시판(2025-11-17 등록)의 첨부파일. 문제지 PDF는 선택과목·짝수형까지 40쪽이며 공통 홀수형은 1~8쪽.
+    paperUrl: 'https://www.suneung.re.kr/boardCnts/fileDown.do?fileSeq=f9055b3484e9176cea7c74b9819a7d2c',
+    answerKeyUrl: 'https://www.suneung.re.kr/boardCnts/fileDown.do?fileSeq=970fb683af8df94b36d29efe00741532',
     rights: { ...UNCHECKED },
   },
   {

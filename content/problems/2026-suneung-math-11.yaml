@@ -1,0 +1,86 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 11
+paperType: odd
+paperPage: 4
+paperCrop: [0.099, 0.128, 0.492, 0.438]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    시각 $t=0$ 일 때 원점을 출발하여 수직선 위를 움직이는 점 P가 있다. 실수 $k$ 에 대하여 시각 $t\,(t\ge0)$ 일 때 점 P의 속도 $v(t)$ 가
+
+    $$
+    v(t)=t^2-kt+4
+    $$
+
+    이다. &lt;보기&gt;에서 옳은 것만을 있는 대로 고른 것은? [4점]
+  boxTitle: 보기
+  conditions:
+    - |
+      ㄱ. $k=0$ 이면, 시각 $t=1$ 일 때 점 P의 위치는 $\dfrac{13}{3}$ 이다.
+    - |
+      ㄴ. $k=3$ 이면, 출발한 후 점 P의 운동 방향이 한 번 바뀐다.
+    - |
+      ㄷ. $k=5$ 이면, 시각 $t=0$ 에서 $t=2$ 까지 점 P가 움직인 거리는 3이다.
+  choices: ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"]
+format: choice
+answer:
+  value: "ㄱ, ㄷ"
+  choice: 3
+status: published
+difficulty: standard
+concepts:
+  - { label: 속도와 위치, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 속도와 움직인 거리, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  위치는 속도의 정적분, 운동 방향이 바뀌는 것은 속도의 부호가 바뀔 때, 움직인 거리는 $|v(t)|$ 의 정적분이다. 보기마다 이 중 무엇을 묻는지 구분하자.
+firstIdea: |
+  원점에서 출발하므로 위치는 $\displaystyle x(t)=\int_0^t v(s)\,ds$ 이고, 방향 전환은 $v(t)$ 의 부호 변화, 움직인 거리는 $\displaystyle\int|v(t)|\,dt$ 다. 보기 셋이 각각 이 셋을 하나씩 묻는다.
+steps:
+  - title: ㄱ은 위치
+    body: |
+      $k=0$ 이면 $\displaystyle\int_0^1(t^2+4)\,dt=\frac{1}{3}+4=\frac{13}{3}$. **참**.
+    why: |
+      출발점이 원점이라 정적분 값이 곧 위치다.
+  - title: ㄴ은 속도의 부호
+    body: |
+      $k=3$ 이면 $v(t)=t^2-3t+4$ 의 판별식이 $9-16<0$ 이므로 $v(t)>0$ 이 항상 성립한다. 운동 방향은 바뀌지 않는다. **거짓**.
+    why: |
+      방향이 바뀌려면 속도가 0을 지나며 부호가 바뀌어야 하는데, 이 이차식은 0이 되지 않는다.
+  - title: ㄷ은 움직인 거리
+    body: |
+      $k=5$ 이면 $v(t)=(t-1)(t-4)$ 이므로 $0\le t\le1$ 에서 $v\ge0$, $1\le t\le2$ 에서 $v\le0$.
+      $X(t)=\dfrac{t^3}{3}-\dfrac{5}{2}t^2+4t$ 라 하면 $X(0)=0,\ X(1)=\dfrac{11}{6},\ X(2)=\dfrac{2}{3}$.
+      $$
+      \begin{aligned}
+      \int_0^2|v(t)|\,dt&=\frac{11}{6}+\left(\frac{11}{6}-\frac{2}{3}\right)\\
+      &=\frac{11}{6}+\frac{7}{6}=3
+      \end{aligned}
+      $$
+      **참**.
+    why: |
+      $t=1$ 에서 방향이 바뀌므로 앞으로 간 거리와 되돌아온 거리를 따로 더한다.
+  - title: 고른다
+    body: |
+      옳은 것은 ㄱ, ㄷ이다.
+    why: |
+      보기마다 독립적으로 판정한 뒤 조합을 고른다.
+pitfalls:
+  - |
+    ㄷ에서 $\displaystyle\int_0^2 v(t)\,dt=\frac{2}{3}$ 를 움직인 거리로 쓰는 실수. 그것은 위치의 변화량이다.
+  - |
+    ㄴ에서 속도의 최솟값이 작다는 이유만으로 방향이 바뀐다고 판단하는 실수. 판별식으로 $v(t)=0$ 이 되는지 확인한다.
+related: [2027-suneung-math-9]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

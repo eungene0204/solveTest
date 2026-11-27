@@ -16,7 +16,7 @@ npm test               # 검색어 해석·공개 조건 테스트
 npm run check          # 타입 검사
 ```
 
-배포는 `dist/`를 정적 호스팅에 올리면 된다. 환경변수는 `.env.example` 참고.
+배포는 `out/`을 정적 호스팅에 올리면 된다. 환경변수는 `.env.example` 참고.
 
 ## 구조
 
@@ -28,7 +28,7 @@ src/lib/exams.ts            회차 등록부: 공식 문제지 링크, 이용 �
 src/lib/schema.ts           문항 스키마 + 공개 조건(publishBlockers)
 src/lib/query.ts            검색어 해석 ('2027 수능 22번' = '27수능 22' = '2027학년도 수능 수학 22번')
 src/lib/track.ts            핵심 지표 이벤트 (두 번째 문항 열람). 분석 도구 미연결
-src/pages/[kind]/[year]/[subject]/[number].astro   문항 페이지
+src/app/[kind]/[year]/[subject]/[[...number]]/   회차 목록·문항 페이지 (Next.js 정적 export)
 ```
 
 ## 문서

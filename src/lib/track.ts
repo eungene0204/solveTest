@@ -31,9 +31,10 @@ function viewedSet(): Set<string> {
   }
 }
 
-export function initTracking() {
+/** 문항 페이지 열람과 접힌 영역 열기를 기록한다. 등록한 리스너를 떼는 함수를 돌려준다. */
+export function initTracking(): () => void {
   const el = document.querySelector<HTMLElement>('[data-problem-id]');
-  if (!el) return;
+  if (!el) return () => {};
   const id = el.dataset.problemId!;
   track('problem_view', { id });
 
@@ -48,7 +49,11 @@ export function initTracking() {
     if (viewed.size === 2) track('second_problem_view', { id });
   }
 
+  const cleanups: (() => void)[] = [];
   for (const d of document.querySelectorAll<HTMLDetailsElement>('details[data-track]')) {
-    d.addEventListener('toggle', () => d.open && track(d.dataset.track as EventName, { id }), { once: false });
+    const onToggle = () => d.open && track(d.dataset.track as EventName, { id });
+    d.addEventListener('toggle', onToggle);
+    cleanups.push(() => d.removeEventListener('toggle', onToggle));
   }
+  return () => cleanups.forEach((f) => f());
 }

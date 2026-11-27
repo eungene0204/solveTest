@@ -1,0 +1,53 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 16
+paperType: odd
+paperPage: 6
+paperCrop: [0.513, 0.128, 0.902, 0.238]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    방정식 $5^x=\left(\dfrac{1}{25}\right)^{x-3}$ 을 만족시키는 실수 $x$ 의 값을 구하시오. [3점]
+format: short
+answer:
+  value: "2"
+status: published
+difficulty: basic
+concepts:
+  - { label: 지수방정식, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  양변의 밑을 같게 만들 수 있을까? $\dfrac{1}{25}$ 은 5의 몇 제곱일까?
+firstIdea: |
+  밑이 같으면 지수끼리 비교할 수 있다. $\dfrac{1}{25}=5^{-2}$ 이므로 양변의 밑을 5로 통일한다.
+steps:
+  - title: 밑을 5로 통일한다
+    body: |
+      $$
+      \left(\frac{1}{25}\right)^{x-3}=\left(5^{-2}\right)^{x-3}=5^{-2x+6}
+      $$
+    why: |
+      역수는 음의 지수로, 거듭제곱의 거듭제곱은 지수의 곱으로 쓴다.
+  - title: 지수를 비교한다
+    body: |
+      $5^x=5^{-2x+6}$ 이므로 $x=-2x+6$, $x=2$.
+    why: |
+      $y=5^x$ 는 일대일함수라 함숫값이 같으면 지수도 같다.
+pitfalls:
+  - |
+    $-2(x-3)$ 을 $-2x-6$ 으로 전개하는 부호 실수. 그러면 $x=-2$ 가 나온다.
+  - |
+    $\dfrac{1}{25}$ 을 $5^2$ 으로 써서 음의 지수를 빠뜨리는 실수. 그러면 $x=6$ 이 나온다.
+related: [2027-suneung-math-1]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

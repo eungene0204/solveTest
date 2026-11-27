@@ -1,4 +1,4 @@
-import { z } from 'astro/zod';
+import { z } from 'zod';
 import { EXAM_KINDS, PARTS, SUBJECTS, findExam } from './exams';
 
 /**
@@ -49,8 +49,14 @@ export const problemFields = z.object({
       body: md,
       /** src/figures/<이름>.svg 의 이름. 그래프·도형을 SVG로 다시 그린 것 */
       figure: z.string().optional(),
-      /** 조건 상자의 항목. "(가) ..." 형태로 쓴다. */
+      /** 조건 상자의 항목. "(가) ...", "ㄱ. ..." 형태로 쓰면 라벨이 내어쓰기된다. 라벨 없는 항목은 그대로 보인다. */
       conditions: z.array(md).optional(),
+      /** 조건 상자 위쪽 가운데 제목. 예: 보기 → <보기> */
+      boxTitle: z.string().trim().min(1).optional(),
+      /** 첫 번째 상자와 두 번째 상자 사이의 문장 */
+      middle: md.optional(),
+      /** 두 번째 테두리 상자 (예: 빈칸이 있는 증명 과정). 항목 규칙은 conditions와 같다. */
+      conditions2: z.array(md).optional(),
       /** 그림·조건 상자 뒤에 오는 문장 (보통 묻는 말) */
       after: md.optional(),
       /** 5지선다 선택지 ①~⑤ */
@@ -119,7 +125,9 @@ export function publishBlockers(p: ProblemData): string[] {
   }
 
   const pr = p.problem;
-  const problemText = pr ? [pr.body, pr.after ?? '', ...(pr.conditions ?? []), ...(pr.choices ?? [])] : [];
+  const problemText = pr
+    ? [pr.body, pr.middle ?? '', pr.after ?? '', ...(pr.conditions ?? []), ...(pr.conditions2 ?? []), ...(pr.choices ?? [])]
+    : [];
   const text = [...problemText, p.hint, p.firstIdea, ...p.steps.flatMap((s) => [s.title, s.body, s.why]), ...p.pitfalls, p.answer.value];
   if (text.some((t) => TODO.test(t))) out.push('본문에 TODO가 남아 있음');
   if (p.changelog.length === 0) out.push('수정 기록(changelog) 없음');

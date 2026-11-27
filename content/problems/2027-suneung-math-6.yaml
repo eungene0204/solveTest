@@ -1,0 +1,58 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 6
+paperType: odd
+paperPage: 2
+paperCrop: [0.099, 0.518, 0.492, 0.596]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    양수 $k$ 에 대하여 함수 $f(x)=3\sin\dfrac{2\pi x}{k}+k$ 의 주기가 8일 때, 함수 $f(x)$ 의 최댓값은? [3점]
+  choices: ["11", "12", "13", "14", "15"]
+format: choice
+answer:
+  value: "11"
+  choice: 1
+status: published
+difficulty: basic
+concepts:
+  - { label: 삼각함수의 주기, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 삼각함수의 최댓값과 최솟값, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $y=a\sin bx+c$ 에서 주기와 최댓값은 각각 $a, b, c$ 중 무엇으로 정해질까? $k$ 는 두 곳에 들어 있다.
+firstIdea: |
+  $y=a\sin bx+c$ 의 주기는 $\dfrac{2\pi}{|b|}$, 최댓값은 $|a|+c$ 다. $k$ 가 주기와 최댓값 양쪽에 들어 있으므로, 주기 조건으로 $k$ 를 먼저 정한다.
+steps:
+  - title: 주기 조건으로 $k$ 를 구한다
+    body: |
+      $\sin$ 안의 $x$ 의 계수는 $\dfrac{2\pi}{k}$ 이므로 주기는
+      $$
+      \frac{2\pi}{2\pi/k}=k
+      $$
+      이고, 주기가 8이므로 $k=8$.
+    why: |
+      주기는 $2\pi$ 를 $x$ 의 계수로 나눈 값이다. 이 함수는 그 값이 정확히 $k$ 가 되도록 만들어져 있다.
+  - title: 최댓값을 구한다
+    body: |
+      $\sin$ 의 최댓값은 1이므로 $f(x)$ 의 최댓값은 $3\times1+8=11$.
+    why: |
+      진폭 3만큼 위로 올라간 뒤, 그래프 전체가 $k=8$ 만큼 위로 평행이동해 있다.
+pitfalls:
+  - |
+    주기를 $x$ 의 계수 $\dfrac{2\pi}{k}$ 자체로 착각해 $k=\dfrac{\pi}{4}$ 로 두는 실수.
+  - |
+    최댓값을 진폭 3이나 $k$ 하나만으로 답하는 실수. 평행이동한 $+k$ 까지 더한다.
+related: [2027-suneung-math-20]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

@@ -1,0 +1,146 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 20
+paperType: odd
+paperPage: 7
+paperCrop: [0.513, 0.128, 0.902, 0.772]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    세 상수 $a\,(a>0)$, $b\,(b>1)$, $c$ 에 대하여 닫힌구간 $[0,\,2b]$ 에서 정의된 두 함수
+
+    $$
+    \begin{aligned}
+    f(x)&=a\sin\frac{\pi x}{b},\\
+    g(x)&=x^2-2(b+1)x+c
+    \end{aligned}
+    $$
+
+    가 있다. 두 곡선 $y=f(x)$ 와 $y=g(x)$ 의 서로 다른 두 교점 $\mathrm{A}(x_1,\,y_1)$, $\mathrm{B}(x_2,\,y_2)\ (x_1<b<x_2)$ 가 존재하고, $y_2(x_1-b)=y_1(x_2-b)$ 가 성립한다고 하자.
+
+    다음은 직선 OA와 직선 OB의 기울기의 합이 $\dfrac{100}{11}$ 일 때, $a$ 를 $b$ 에 대한 식으로 나타내는 과정이다. (단, O는 원점이다.)
+  conditions:
+    - |
+      두 점 A, B를 지나는 직선을 $l$ 이라 하자.
+
+      주어진 조건으로부터 $\dfrac{y_1}{x_1-b}=\dfrac{y_2}{x_2-b}$ 이므로 직선 $l$ 이 점 $(b,\,0)$ 을 지난다.
+
+      함수 $y=f(x)$ 의 그래프의 성질로부터 선분 AB의 중점의 좌표가 $(b,\,0)$ 이므로 $x_1+x_2=2b$, $y_1+y_2=0$ 이다.
+
+      또한 두 점 A, B는 함수 $y=g(x)$ 의 그래프와 직선 $l$ 이 만나는 점이므로 직선 $l$ 의 기울기는
+
+      $$
+      \frac{\begin{aligned}&\{x_2^{\,2}-2(b+1)x_2+c\}\\&-\{x_1^{\,2}-2(b+1)x_1+c\}\end{aligned}}{x_2-x_1}=\boxed{\text{(가)}}
+      $$
+
+      이고, 직선 $l$ 의 방정식은
+
+      $$
+      y=\boxed{\text{(가)}}\times(x-b)\qquad\cdots\cdots\ \text{㉠}
+      $$
+
+      이다. $\dfrac{y_1}{x_1}-\dfrac{y_1}{2b-x_1}=\dfrac{100}{11}$ 이므로 ㉠을 이용하여 정리하면
+
+      $$
+      36x_1^{\,2}-72bx_1+11b^2=0\quad(x_1<b)
+      $$
+
+      이고, 점 A의 $x$ 좌표는 $\boxed{\text{(나)}}\times b$ 이다.
+
+      점 A는 곡선 $y=f(x)$ 와 직선 $l$ 의 교점이므로 $a$ 를 $b$ 에 대한 식으로 나타내면
+
+      $$
+      a=\boxed{\text{(다)}}
+      $$
+
+      이다.
+  after: |
+    위의 (가), (나)에 알맞은 수를 각각 $p$, $q$ 라 하고, (다)에 알맞은 식을 $h(b)$ 라 하자. $6\times\big(p+q+h(9)\big)$ 의 값을 구하시오. [4점]
+format: short
+answer:
+  value: "169"
+status: published
+difficulty: standard
+concepts:
+  - { label: 삼각함수 그래프의 대칭성, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 사인함수의 값, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  빈칸 문제는 과정 전체를 새로 풀 필요가 없다. 각 빈칸 바로 앞 문장이 무엇을 계산하라고 하는지 보자. (가)는 분자를 정리하면 $x_1+x_2$ 가 남는다.
+firstIdea: |
+  빈칸은 바로 앞의 식만 계산하면 채워진다. (가)는 기울기 식을 $x_2-x_1$ 로 약분한 뒤 바로 위 줄의 $x_1+x_2=2b$ 를 쓰고, (나)는 주어진 이차방정식을 풀어 $x_1<b$ 인 근을 고르고, (다)는 점 A가 $y=f(x)$ 와 직선 $l$ 위에 동시에 있다는 식에서 나온다.
+steps:
+  - title: (가) 기울기를 약분한다
+    body: |
+      분자를 정리하면 $c$ 는 상쇄되고
+      $$
+      \begin{aligned}
+      &(x_2^{\,2}-x_1^{\,2})-2(b+1)(x_2-x_1)\\
+      &=(x_2-x_1)\{x_1+x_2-2(b+1)\}
+      \end{aligned}
+      $$
+      이므로 기울기는 $x_1+x_2-2(b+1)=2b-2b-2=-2$. 따라서 $p=-2$.
+    why: |
+      이차함수 위 두 점을 잇는 직선의 기울기는 늘 "$x$ 좌표의 합"으로 정리된다. 그 합 $2b$ 가 바로 앞 문장에 이미 나와 있다.
+  - title: 이차방정식이 나오는 이유 확인
+    body: |
+      ㉠에서 $y_1=-2(x_1-b)=2(b-x_1)$ 이다. $x_2=2b-x_1$, $y_2=-y_1$ 이므로 직선 OB의 기울기는 $-\dfrac{y_1}{2b-x_1}$ 이고, 기울기의 합 조건은
+      $$
+      \begin{aligned}
+      &2(b-x_1)\cdot\frac{2b-2x_1}{x_1(2b-x_1)}\\
+      &=\frac{4(b-x_1)^2}{x_1(2b-x_1)}=\frac{100}{11}
+      \end{aligned}
+      $$
+      이를 정리하면 $36x_1^{\,2}-72bx_1+11b^2=0$ 이 된다.
+    why: |
+      빈칸을 채우는 데 꼭 필요하지는 않지만, 과정이 어디서 왔는지 확인해 두면 (다)에서 쓸 $y_1=2(b-x_1)$ 이 자연스럽게 나온다.
+  - title: (나) 이차방정식을 푼다
+    body: |
+      $$
+      \begin{aligned}
+      &36x_1^{\,2}-72bx_1+11b^2\\
+      &=(6x_1-b)(6x_1-11b)=0
+      \end{aligned}
+      $$
+      $x_1=\dfrac{b}{6}$ 또는 $\dfrac{11b}{6}$ 인데 $x_1<b$ 이므로 $x_1=\dfrac{b}{6}$. 따라서 $q=\dfrac{1}{6}$.
+    why: |
+      $36\times11=396=6\times66$ 이고 $6+66=72$ 라서 깔끔하게 인수분해된다. 근의 공식을 써도 된다.
+  - title: (다) 점 A를 $y=f(x)$ 에 대입한다
+    body: |
+      $y_1=2\left(b-\dfrac{b}{6}\right)=\dfrac{5b}{3}$ 이고 $f(x_1)=a\sin\dfrac{\pi}{6}=\dfrac{a}{2}$ 이므로
+      $$
+      \frac{a}{2}=\frac{5b}{3},\qquad a=\frac{10b}{3}
+      $$
+      따라서 $h(b)=\dfrac{10b}{3}$, $h(9)=30$.
+    why: |
+      점 A는 직선 $l$ 위의 점이면서 곡선 $y=f(x)$ 위의 점이다. $x_1=\dfrac{b}{6}$ 이면 $\dfrac{\pi x_1}{b}=\dfrac{\pi}{6}$ 으로 $b$ 가 사라진다.
+  - title: 값을 계산한다
+    body: |
+      $$
+      \begin{aligned}
+      &6\times\left(-2+\frac{1}{6}+30\right)\\
+      &=-12+1+180=169
+      \end{aligned}
+      $$
+    why: |
+      6을 괄호 안의 세 수에 모두 곱한다.
+pitfalls:
+  - |
+    (가)에서 $x_1+x_2$ 항을 빠뜨리고 $-2(b+1)$ 만 기울기로 쓰는 실수.
+  - |
+    (나)에서 $x_1<b$ 조건을 놓쳐 $\dfrac{11}{6}$ 을 고르는 실수. $\dfrac{11b}{6}$ 은 $x_2$ 쪽이다.
+  - |
+    (다)에서 $\sin\dfrac{\pi}{6}=\dfrac{1}{2}$ 을 넣지 않고 $a=\dfrac{5b}{3}$ 으로 쓰는 실수.
+related: [2027-suneung-math-6]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

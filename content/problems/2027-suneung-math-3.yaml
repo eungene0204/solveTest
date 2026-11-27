@@ -1,0 +1,59 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 3
+paperType: odd
+paperPage: 1
+paperCrop: [0.513, 0.188, 0.902, 0.296]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    모든 항이 양수인 등비수열 $\{a_n\}$ 에 대하여
+
+    $$
+    a_1=1,\quad a_5=3a_3
+    $$
+
+    일 때, $a_7$ 의 값은? [3점]
+  choices: ["9", '$9\sqrt{3}$', "27", '$27\sqrt{3}$', "81"]
+format: choice
+answer:
+  value: "27"
+  choice: 3
+status: published
+difficulty: basic
+concepts:
+  - { label: 등비수열의 일반항, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $a_5$ 는 $a_3$ 에 공비를 몇 번 곱한 항일까? 그리고 $a_7$ 은 $a_1$ 에 공비를 몇 번 곱한 항일까?
+firstIdea: |
+  등비수열에서 두 항의 비는 공비의 거듭제곱이다. $a_5=3a_3$ 은 $r^2=3$ 을 바로 알려 주고, $a_7=a_1r^6=\left(r^2\right)^3$ 이므로 $r$ 자체를 구할 필요가 없다.
+steps:
+  - title: 공비의 제곱을 구한다
+    body: |
+      공비를 $r$ 이라 하면 $a_5=a_3r^2$ 이므로 $a_3r^2=3a_3$, 즉 $r^2=3$.
+    why: |
+      모든 항이 양수라 $a_3\neq0$ 이므로 양변을 $a_3$ 으로 나눌 수 있다.
+  - title: $a_7$ 을 $r^2$ 으로 나타낸다
+    body: |
+      $a_7=a_1r^6=1\times\left(r^2\right)^3=3^3=27$
+    why: |
+      $r=\sqrt{3}$ 을 구해 $\left(\sqrt{3}\right)^6$ 을 계산해도 같지만, $r^2$ 을 한 덩어리로 쓰면 무리수 계산을 피할 수 있다.
+pitfalls:
+  - |
+    일반항은 $a_n=a_1r^{n-1}$ 이다. 지수를 하나 잘못 잡으면 $a_6=9\sqrt{3}$(②)이나 $a_8=27\sqrt{3}$(④)을 고르게 된다.
+  - |
+    $r^2=3$ 에서 $r=3$ 으로 써서 $3^6$ 을 계산하는 실수.
+related: [2027-suneung-math-12]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

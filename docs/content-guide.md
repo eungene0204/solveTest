@@ -42,9 +42,9 @@
 
 1. **초안**: `status: draft`. `npm run dev` 로 휴대전화 폭에서 보면서 작성한다.
 2. **정답 대조**: 옮겨 적은 문제 본문이 원문과 같은지(`.cache/crops/`)도 함께 확인한다. 공식 정답표의 값과 선택지 번호를 대조한다. 홀·짝수형 선택지 번호가 다르면 `paperType`과 `choiceOtherPaper`를 채운다. 도구로 재계산할 수 있으면 교차 확인한다. → `reviews`에 `answer-check`
-3. **풀이 검수**: 작성자가 아닌 사람이 조건 적용, 경우 누락, 수식 변형을 따로 확인한다. → `solution-review`
-4. **고난도**(`difficulty: hard`)나 풀이가 애매한 문항: 해설을 보지 않은 사람의 독립 재풀이로 답을 확인한다. → `independent-resolve`
-5. **모바일 미리보기**: 실제 휴대전화에서 수식 줄바꿈, 가로 스크롤, 접기·펼치기를 확인한다. → `mobile-preview`
+3. **풀이 검수**: 작성과 분리된 절차로 조건 적용, 경우 누락, 수식 변형을 따로 확인한다(`docs/review-sheet.md`). → `solution-review`
+4. **고난도**(`difficulty: hard`)나 풀이가 애매한 문항: 해설을 보지 않은 새 맥락에서 다시 풀어 답을 확인한다. → `independent-resolve`
+5. **모바일 미리보기**: 375px 폭에서 수식 줄바꿈, 가로 스크롤, 그림·상자, 접기·펼치기를 확인한다. → `mobile-preview`
 6. **공개**: `status: published`, `changelog`에 "최초 공개". 조건이 하나라도 빠지면 `npm run build`가 실패하고 빠진 항목을 알려준다.
 
 미리보기 화면 상단의 **"공개 전 확인할 항목"** 배너에 남은 단계가 표시된다.
@@ -57,6 +57,6 @@
 2. 수정본을 다시 정답 대조·풀이 검수한다(`reviews`에 새 기록 추가).
 3. `status: published`, `changelog`에 수정 내용을 적고 배포한다.
 
-## 파일럿 측정
+## 작업 시간 기록
 
-파일럿 8문항은 `minutes: { writing, review }`에 실제 걸린 시간(분)을 적는다. 남은 물량 산정에 쓴다.
+`minutes: { writing, review }`는 사람이 직접 작성·검수한 시간(분)만 적는다. Claude가 한 작업은 기록하지 않는다.

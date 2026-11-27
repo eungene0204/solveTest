@@ -1,0 +1,65 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 8
+paperType: odd
+paperPage: 3
+paperCrop: [0.099, 0.128, 0.492, 0.212]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    두 실수 $a=\log_2 9$, $b=\log_3 2+\dfrac{1}{\log_8 3}$ 에 대하여 $a\times b$ 의 값은? [3점]
+  choices: ["6", "7", "8", "9", "10"]
+format: choice
+answer:
+  value: "8"
+  choice: 3
+status: published
+difficulty: basic
+concepts:
+  - { label: 로그의 성질, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 로그의 밑 변환, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $\dfrac{1}{\log_8 3}$ 은 밑과 진수를 바꾼 로그로 쓸 수 있다. $b$ 를 밑이 3인 로그 하나로 모아 보자.
+firstIdea: |
+  $\dfrac{1}{\log_a b}=\log_b a$ 를 쓰면 $b$ 의 두 항이 모두 밑이 3인 로그가 되어 하나로 합쳐진다. 그러면 $a$ 는 "밑 2, 진수 3", $b$ 는 "밑 3, 진수 2" 꼴이 되어 곱하면 서로 상쇄된다.
+steps:
+  - title: $b$ 를 밑이 3인 로그 하나로 모은다
+    body: |
+      $\dfrac{1}{\log_8 3}=\log_3 8$ 이므로
+      $$
+      \begin{aligned}
+      b&=\log_3 2+\log_3 8\\
+      &=\log_3 16=4\log_3 2
+      \end{aligned}
+      $$
+    why: |
+      로그의 합은 진수의 곱이고, $16=2^4$ 이라 지수를 앞으로 내릴 수 있다.
+  - title: $a$ 도 같은 꼴로 쓴다
+    body: |
+      $a=\log_2 9=\log_2 3^2=2\log_2 3$
+    why: |
+      $a$ 와 $b$ 의 밑과 진수가 서로 뒤바뀐 꼴이 되도록 맞춘다.
+  - title: 곱한다
+    body: |
+      $a\times b=2\log_2 3\times4\log_3 2=8\left(\log_2 3\times\log_3 2\right)=8$
+    why: |
+      $\log_2 3\times\log_3 2=1$ 이다. 밑과 진수를 바꾼 두 로그는 서로 역수다.
+pitfalls:
+  - |
+    $\dfrac{1}{\log_8 3}$ 을 $\log_8\dfrac{1}{3}$ 이나 $-\log_8 3$ 으로 바꾸는 실수. 역수는 밑과 진수를 바꾼다.
+  - |
+    $\log_3 2+\log_3 8$ 을 $\log_3 10$ 으로 더하는 실수. 로그의 합은 진수의 곱이다.
+related: [2027-suneung-math-14]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

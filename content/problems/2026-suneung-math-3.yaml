@@ -1,0 +1,56 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 3
+paperType: odd
+paperPage: 1
+paperCrop: [0.513, 0.190, 0.902, 0.262]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    수열 $\{a_n\}$ 에 대하여 $\displaystyle\sum_{k=1}^{4}(2a_k-k)=0$ 일 때, $\displaystyle\sum_{k=1}^{4}a_k$ 의 값은? [3점]
+  choices: ["1", "2", "3", "4", "5"]
+format: choice
+answer:
+  value: "5"
+  choice: 5
+status: published
+difficulty: basic
+concepts:
+  - { label: 합의 기호 Σ의 성질, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $\Sigma$ 를 항별로 나눠 보자. $\displaystyle\sum_{k=1}^{4}k$ 는 숫자 하나다.
+firstIdea: |
+  $\Sigma$ 는 항별로 나눌 수 있고 상수배를 밖으로 뺄 수 있다. $\displaystyle\sum(2a_k-k)=2\sum a_k-\sum k$ 로 나누면 구하는 값 $\sum a_k$ 에 대한 일차방정식이 된다.
+steps:
+  - title: 항별로 나눈다
+    body: |
+      $$
+      \begin{aligned}
+      &\sum_{k=1}^{4}(2a_k-k)\\
+      &=2\sum_{k=1}^{4}a_k-\sum_{k=1}^{4}k=2\sum_{k=1}^{4}a_k-10
+      \end{aligned}
+      $$
+    why: |
+      $\displaystyle\sum_{k=1}^{4}k=1+2+3+4=10$ 이다.
+  - title: 방정식을 푼다
+    body: |
+      $2\displaystyle\sum_{k=1}^{4}a_k-10=0$ 이므로 $\displaystyle\sum_{k=1}^{4}a_k=5$.
+    why: |
+      각 $a_k$ 를 몰라도 합 전체를 하나의 미지수처럼 다루면 된다.
+pitfalls:
+  - |
+    $\displaystyle\sum_{k=1}^{4}k$ 를 $4$ 로 쓰는 실수. $k$ 는 1부터 4까지 바뀌므로 합은 10이다.
+related: [2027-suneung-math-18]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }
