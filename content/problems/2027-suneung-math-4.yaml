@@ -1,0 +1,53 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 4
+paperType: odd
+paperPage: 1
+paperCrop: [0.513, 0.522, 0.902, 0.748]   # 문항 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    함수 $y=f(x)$ 의 그래프가 그림과 같다.
+  figure: 2027-suneung-math-4
+  after: |
+    $\displaystyle\lim_{x\to0-}f(x)+\lim_{x\to1+}f(x)$ 의 값은? [3점]
+  choices: ["1", "2", "3", "4", "5"]
+format: choice
+answer:
+  value: "4"
+  choice: 4
+status: draft
+difficulty: basic
+concepts:
+  - { label: 좌극한과 우극한, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 그래프로 극한 읽기, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  $x\to0-$ 는 0의 왼쪽에서, $x\to1+$ 는 1의 오른쪽에서 다가간다. 그 쪽의 곡선만 따라가 보자. 점이 채워져 있는지는 극한값과 관계가 있을까?
+firstIdea: |
+  극한은 그 점의 함숫값이 아니라 **다가가는 쪽의 그래프가 향하는 높이**다. 그래서 그림에서 0의 왼쪽 조각과 1의 오른쪽 조각만 본다.
+steps:
+  - title: 0의 왼쪽에서 다가갈 때
+    body: |
+      $-1<x<0$ 부분의 곡선은 $x$ 가 0에 가까워질수록 높이 3(빈 점)으로 다가간다. 따라서 $\displaystyle\lim_{x\to0-}f(x)=3$.
+    why: |
+      $x=0$ 에서의 실제 함숫값은 0이지만, 좌극한은 왼쪽 곡선이 향하는 값이다.
+  - title: 1의 오른쪽에서 다가갈 때
+    body: |
+      $x>1$ 부분의 직선은 $x$ 가 1에 가까워질수록 높이 1(채워진 점)로 다가간다. 따라서 $\displaystyle\lim_{x\to1+}f(x)=1$.
+    why: |
+      $0<x<1$ 의 직선은 높이 2(빈 점)로 가지만 그것은 좌극한이다. 오른쪽 조각만 본다.
+  - title: 더한다
+    body: |
+      $3+1=4$.
+    why: |
+      두 극한이 각각 존재하므로 그대로 더한다.
+pitfalls:
+  - |
+    채워진 점(함숫값)과 극한값을 혼동한다. $x=0$ 의 함숫값 0을 좌극한으로 쓰면 틀린다.
+  - |
+    $x\to1+$ 에서 왼쪽 조각의 높이 2를 읽는 실수. 부호 $+$ 는 오른쪽에서 다가간다는 뜻이다.
+related: [2027-suneung-math-15]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

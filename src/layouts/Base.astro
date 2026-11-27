@@ -1,0 +1,56 @@
+---
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import { SITE_NAME, SITE_DESCRIPTION } from '../site';
+import { PREVIEW } from '../lib/problems';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** 검색 노출 제외 (준비 중·오류·수정 중 페이지). 미리보기 빌드는 전부 noindex. */
+  noindex?: boolean;
+}
+const { title, description = SITE_DESCRIPTION, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {(noindex || PREVIEW) && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="article" />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/">{SITE_NAME}{PREVIEW && <span class="small" style="color:var(--warn)"> 미리보기</span>}</a>
+        <form class="search" action="/search/" method="get" role="search">
+          <input name="q" type="search" placeholder="예: 2027 수능 22번" aria-label="문항 검색" />
+          <button type="submit">검색</button>
+        </form>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer>
+      <div class="wrap">
+        문제는 각 시행기관(한국교육과정평가원 등)의 시험 문항을 옮겨 적은 것으로 저작권은 시행기관에 있습니다. 힌트와 풀이는 자체 작성했습니다.
+        해설 오류는 각 문항 페이지 하단에서 신고할 수 있습니다.
+      </div>
+    </footer>
+    <script>
+      import { initTracking } from '../lib/track';
+      initTracking();
+    </script>
+  </body>
+</html>

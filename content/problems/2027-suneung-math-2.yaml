@@ -1,0 +1,46 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 2
+paperType: odd
+paperPage: 1
+paperCrop: [0.099, 0.522, 0.492, 0.598]   # 문항 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    함수 $f(x)=2x^4+2x$ 에 대하여 $\displaystyle\lim_{h\to0}\frac{f(1+h)-f(1)}{h}$ 의 값은? [2점]
+  choices: ["6", "7", "8", "9", "10"]
+format: choice
+answer:
+  value: "10"
+  choice: 5
+status: draft
+difficulty: basic
+concepts:
+  - { label: 미분계수의 정의, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  주어진 극한식이 어떤 값의 정의와 똑같은 모양인지 먼저 알아보자.
+firstIdea: |
+  $\displaystyle\lim_{h\to0}\frac{f(1+h)-f(1)}{h}$ 는 미분계수 $f'(1)$ 의 정의 그 자체다. 극한을 직접 계산하지 않고 도함수에 1을 넣으면 된다.
+steps:
+  - title: 극한식을 미분계수로 바꾼다
+    body: |
+      $$
+      \lim_{h\to0}\frac{f(1+h)-f(1)}{h}=f'(1)
+      $$
+    why: |
+      $x=1$ 에서 $h$ 만큼 움직였을 때의 평균변화율의 극한이 미분계수의 정의다.
+  - title: 도함수에 대입한다
+    body: |
+      $f'(x)=8x^3+2$ 이므로 $f'(1)=8+2=10$.
+    why: |
+      다항함수는 각 항을 $x^n\to nx^{n-1}$ 로 미분한다.
+pitfalls:
+  - |
+    $f(1+h)$ 를 전개해서 극한을 직접 계산할 수도 있지만 4차식 전개에서 실수가 잦다. 정의를 알아보면 한 줄이다.
+  - |
+    분모가 $2h$ 처럼 바뀐 변형 문제와 혼동하지 않도록, 분자의 차이와 분모가 같은 $h$ 인지 확인한다.
+related: []
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

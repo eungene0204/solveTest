@@ -1,0 +1,65 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 9
+paperType: odd
+paperPage: 3
+paperCrop: [0.099, 0.480, 0.492, 0.598]   # 문항 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    수직선 위를 움직이는 점 P가 있다. 시각 $t\,(t\ge0)$ 일 때 점 P의 속도 $v(t)$ 는
+
+    $$
+    v(t)=3t^2-18t+15
+    $$
+
+    이다. 시각 $t=0$ 부터 $t=2$ 까지 점 P가 움직인 거리는? [4점]
+  choices: ["9", "10", "11", "12", "13"]
+format: choice
+answer:
+  value: "12"
+  choice: 4
+  choiceOtherPaper: 2   # 짝수형 ②
+status: draft
+difficulty: standard
+concepts:
+  - { label: 속도와 움직인 거리, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 정적분, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  "위치의 변화량"과 "움직인 거리"는 다르다. 주어진 시간 동안 점 P가 방향을 바꾸는지 먼저 확인하자.
+firstIdea: |
+  움직인 거리는 $\displaystyle\int_0^2|v(t)|\,dt$ 다. 절댓값을 풀려면 $v(t)$ 의 부호가 바뀌는 시각을 알아야 하므로, $v(t)$ 를 인수분해하는 것에서 시작한다.
+steps:
+  - title: 속도의 부호가 바뀌는 시각을 찾는다
+    body: |
+      $$
+      \begin{aligned}
+      v(t)&=3t^2-18t+15\\
+      &=3(t-1)(t-5)
+      \end{aligned}
+      $$
+      $0\le t\le 1$ 에서 $v(t)\ge0$, $1\le t\le 2$ 에서 $v(t)\le0$.
+    why: |
+      속도의 부호가 바뀌는 $t=1$ 에서 점 P가 방향을 바꾼다. 그 앞뒤로 나누어야 절댓값을 풀 수 있다.
+  - title: 구간을 나누어 적분한다
+    body: |
+      $x(t)=t^3-9t^2+15t$ 라 하면 $x(0)=0,\ x(1)=7,\ x(2)=2$.
+      $$
+      \begin{aligned}
+      &\int_0^2|v(t)|\,dt\\
+      &=\{x(1)-x(0)\}+\{x(1)-x(2)\}\\
+      &=7+5=12
+      \end{aligned}
+      $$
+    why: |
+      $v$ 의 부정적분 하나를 구해 두면 각 구간의 적분은 끝값의 차로 바로 계산된다. 음수 구간은 부호를 바꿔 더한다.
+pitfalls:
+  - |
+    $\int_0^2 v(t)\,dt=2$ 를 답으로 고르는 실수. 이것은 위치의 변화량이고, 앞으로 7만큼 갔다가 5만큼 되돌아온 것을 상쇄한 값이다.
+  - |
+    부호가 바뀌는 시각 $t=5$ 는 구간 밖이므로 신경 쓰지 않아도 된다. $t=1$ 만 나누면 된다.
+related: []
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

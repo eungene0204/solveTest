@@ -1,0 +1,49 @@
+exam: { year: 2027, kind: suneung, subject: math, part: common }
+number: 19
+paperType: odd
+paperPage: 7
+paperCrop: [0.099, 0.500, 0.492, 0.538]   # 문항 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    곡선 $y=x^3-3x^2-24x+3$ 과 직선 $y=k$ 가 만나는 점의 개수가 2가 되도록 하는 양수 $k$ 의 값을 구하시오. [3점]
+format: short
+answer:
+  value: "31"
+status: draft
+difficulty: basic
+concepts:
+  - { label: 삼차함수의 극대·극소, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 방정식의 실근의 개수, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  가로선 $y=k$ 를 위아래로 움직여 보자. 삼차함수 그래프와의 교점이 3개에서 1개로 바뀌는 순간에는 어떤 일이 생길까?
+firstIdea: |
+  삼차함수 그래프와 가로선의 교점이 정확히 2개인 것은 가로선이 **극대점이나 극소점에서 접할 때**뿐이다. 그래서 극댓값과 극솟값을 구하는 것에서 시작한다.
+steps:
+  - title: 극값을 구한다
+    body: |
+      $y'=3x^2-6x-24=3(x+2)(x-4)$ 이므로 $x=-2$ 에서 극대, $x=4$ 에서 극소.
+      $$
+      \begin{aligned}
+      y(-2)&=-8-12+48+3=31\\
+      y(4)&=64-48-96+3=-77
+      \end{aligned}
+      $$
+    why: |
+      도함수가 0이 되고 부호가 바뀌는 곳이 극값의 후보다.
+  - title: 교점이 2개가 되는 $k$
+    body: |
+      $k=31$ 또는 $k=-77$ 일 때 교점이 2개다. $k$ 가 양수이므로 $k=31$.
+    why: |
+      두 극값 사이의 $k$ 는 교점 3개, 바깥은 1개, 극값과 같으면 접점을 포함해 2개다.
+pitfalls:
+  - |
+    $y(-2)$ 를 계산할 때 $-24\times(-2)=+48$ 의 부호 실수가 잦다.
+  - |
+    극솟값 $-77$ 도 조건을 만족하지만 "양수 $k$" 조건으로 제외된다.
+related: [2027-suneung-math-21]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
+changelog: []

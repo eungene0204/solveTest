@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_NAME } from '../site';
+import { allProblems, inExam, isListed } from '../lib/problems';
+import { EXAMS, examPath, examTitle } from '../lib/exams';
+
+const listed = (await allProblems()).filter(isListed);
+const exams = [...EXAMS].sort((a, b) => b.year - a.year);
+---
+<Base title={SITE_NAME}>
+  <h1>막힌 기출, 첫 발상부터</h1>
+  <p class="muted">학년도와 문항 번호로 찾으면 힌트와 검수된 풀이를 바로 볼 수 있습니다. 회원가입은 필요 없습니다.</p>
+
+  <form action="/search/" method="get" class="search" style="margin:16px 0 8px">
+    <input name="q" type="search" placeholder="예: 2027 수능 22번" aria-label="문항 검색" />
+    <button class="primary" type="submit">찾기</button>
+  </form>
+
+  <h2>시험 목록</h2>
+  <ul class="stack" style="list-style:none;padding:0">
+    {exams.map((exam) => {
+      const n = inExam(listed, exam).filter((p) => p.data.status === 'published').length;
+      return (
+        <li class="card">
+          <a href={examPath(exam)}><strong>{examTitle(exam)} 공통</strong></a>
+          <div class="small muted">풀이 공개 {n}/{exam.count}문항</div>
+        </li>
+      );
+    })}
+  </ul>
+</Base>

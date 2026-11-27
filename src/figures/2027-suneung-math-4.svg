@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 235" width="350" height="235" role="img" aria-label="함수 y=f(x)의 그래프" font-family="KaTeX_Main, 'Times New Roman', serif" font-size="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8z" fill="currentColor" stroke="none"/></marker></defs>
+<line x1="10" y1="200" x2="340" y2="200" stroke-width="1.1" marker-end="url(#ah)"/>
+<line x1="175" y1="228" x2="175" y2="8" stroke-width="1.1" marker-end="url(#ah)"/>
+<path d="M133 200V116H217V200M133 158H217" stroke-dasharray="4 4" stroke-width="1"/>
+<path d="M23.799999999999983 48.79999999999998L133 158"/>
+<path d="M133 116A42 42 0 0 1 175 74"/>
+<path d="M175 200L217 116"/>
+<path d="M217 158L330.4 36.20000000000002"/>
+<circle cx="133.0" cy="158.0" r="3.6" fill="var(--fig-bg, #fff)" stroke-width="1.4"/>
+<circle cx="133.0" cy="116.0" r="3.6" fill="currentColor" stroke-width="1.4"/>
+<circle cx="175.0" cy="74.0" r="3.6" fill="var(--fig-bg, #fff)" stroke-width="1.4"/>
+<circle cx="175.0" cy="200.0" r="3.6" fill="currentColor" stroke-width="1.4"/>
+<circle cx="217.0" cy="116.0" r="3.6" fill="var(--fig-bg, #fff)" stroke-width="1.4"/>
+<circle cx="217.0" cy="158.0" r="3.6" fill="currentColor" stroke-width="1.4"/>
+<text x="133.0" y="220.0" text-anchor="middle" fill="currentColor" stroke="none">−1</text>
+<text x="166.0" y="220.0" text-anchor="middle" fill="currentColor" stroke="none">O</text>
+<text x="217.0" y="220.0" text-anchor="middle" fill="currentColor" stroke="none">1</text>
+<text x="334.0" y="220.0" text-anchor="middle" fill="currentColor" stroke="none" font-style="italic">x</text>
+<text x="167.0" y="163.0" text-anchor="end" fill="currentColor" stroke="none">1</text>
+<text x="167.0" y="121.0" text-anchor="end" fill="currentColor" stroke="none">2</text>
+<text x="167.0" y="79.0" text-anchor="end" fill="currentColor" stroke="none">3</text>
+<text x="167.0" y="16.0" text-anchor="end" fill="currentColor" stroke="none" font-style="italic">y</text>
+<text x="301.0" y="29.9" text-anchor="middle" fill="currentColor" stroke="none"><tspan font-style="italic">y</tspan> = <tspan font-style="italic">f</tspan>(<tspan font-style="italic">x</tspan>)</text>
+</svg>

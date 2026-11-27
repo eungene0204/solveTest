@@ -1,0 +1,52 @@
+# 작성 규칙은 docs/content-guide.md 참고.
+# 수식은 $...$(인라인), $$...$$(별도 줄). 백슬래시가 들어가는 글은 반드시 `|` 블록으로 쓴다.
+exam: { year: __YEAR__, kind: __KIND__, subject: math, part: common }
+number: __NUMBER__
+paperType: odd        # 정답 선택지 번호의 기준 시험지 (odd=홀수형, even=짝수형)
+# paperPage: 7        # 공식 PDF에서 이 문항이 있는 쪽
+# paperCrop: [0.099, 0.131, 0.492, 0.300]  # 원문 대조용 영역 (npm run crop → .cache/crops/)
+problem:              # 문제 원문을 그대로 옮겨 적는다. 화면 순서: body → figure → conditions → after → choices
+  body: |
+    TODO 문제 본문. 끝에 배점 [4점]
+  # figure: __YEAR__-__KIND__-math-__NUMBER__   # src/figures/<이름>.svg (그래프·도형을 SVG로 다시 그림)
+  # conditions:       # 조건 상자
+  #   - |
+  #     (가) ...
+  # after: |          # 그림·조건 상자 뒤의 묻는 말
+  #   ...의 값을 구하시오. [4점]
+  # choices: ["1", "2", "3", "4", "5"]   # 5지선다만. 수식은 '$\dfrac{7}{2}$'
+format: short         # choice(5지선다) | short(단답)
+answer:
+  value: "TODO"       # 정답 값. 선택형이면 선택지에 적힌 값
+  # choice: 3         # 선택형: paperType 기준 선택지 번호
+  # choiceOtherPaper: 4  # 홀·짝수형 번호가 다를 때만
+status: draft         # draft → published (검수 기록이 모두 있어야 빌드 통과) | withdrawn (공개 중지)
+difficulty: standard  # basic | standard | hard (hard는 독립 재풀이 필요)
+concepts:
+  - label: TODO 개념명
+    course2015: 수학Ⅱ   # 수학Ⅰ | 수학Ⅱ | 확률과 통계 | 미적분 | 기하
+    course2022: 미적분Ⅰ  # 2028 수능 기준: 대수 | 미적분Ⅰ | 확률과 통계
+hint: |
+  TODO 정답을 드러내지 않고 출발점만 제시한다. 예: 조건 (가)에서 $f'(x)$ 의 부호가 바뀌는 곳을 먼저 찾아보자.
+firstIdea: |
+  TODO 첫 식을 왜 이렇게 세우는지. 문제의 어떤 조건이 이 출발을 가리키는지 한두 문장으로.
+steps:
+  - title: TODO 단계 제목
+    body: |
+      TODO 이 단계의 풀이.
+      $$
+      \int_0^1 f(x)\,dx = \dots
+      $$
+    why: |
+      TODO 이 식이나 판단이 나오는 이유.
+pitfalls:
+  - TODO 학생이 자주 틀리는 지점 (조건 누락, 경우 빠뜨림, 부호 실수 등)
+related: []           # 개념이 실제로 이어지는 문항 id. 예: [2026-suneung-math-21]
+reviews: []
+#  - { step: answer-check, by: 이름, date: 2026-11-27, note: 공식 정답표와 대조 }
+#  - { step: solution-review, by: 이름, date: 2026-11-27 }
+#  - { step: mobile-preview, by: 이름, date: 2026-11-27 }
+#  - { step: independent-resolve, by: 이름, date: 2026-11-27 }   # hard만
+changelog: []
+#  - { date: 2026-11-27, note: 최초 공개 }
+# minutes: { writing: 30, review: 15 }   # 파일럿 측정: 작성·검수에 걸린 분
