@@ -26,7 +26,18 @@
 
 ## 함정
 
-- 스키마(`src/lib/schema.ts`)를 바꾼 뒤 dev 서버가 새 필드를 버리면 서버를 끄고 `.astro/data-store.json`을 지운 뒤 다시 켠다.
-- Astro는 의도적으로 5.x다. 메이저 업그레이드는 사용자 요청이 있을 때만.
+- Next.js 16 정적 export(`output: 'export'`)다(ADR 0005). 서버가 필요한 기능(Route Handler의 Request, cookies, rewrites, Server Actions, ISR)은 쓸 수 없다. 메이저 업그레이드는 사용자 요청이 있을 때만.
+- 동적 경로의 `generateStaticParams()`가 빈 배열이면 `next build`가 실패한다. 회차 목록과 문항 페이지를 `[[...number]]` 하나로 묶은 이유다. 경로를 새로 나눌 때 공개 문항 0개인 공개 빌드에서도 통과하는지 확인한다.
+- 환경변수는 서버 컴포넌트에서 빌드 시점에 읽어 클라이언트 컴포넌트에 props로 넘긴다. 클라이언트 컴포넌트에서 `process.env`를 직접 읽지 않는다.
 - 평가원 정답표 링크는 공개 가채점본이다. 확정 정답 발표 후 재대조가 필요하다(`docs/roadmap.md`).
 - 평가원에 이용 허락 문의는 하지 않기로 했다. 다시 제안하지 않는다.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

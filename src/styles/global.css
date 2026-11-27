@@ -149,7 +149,10 @@ footer { border-top: 1px solid var(--line); padding: 20px 0 32px; font-size: 0.8
 .problem-no { float: left; font-weight: 700; margin-right: 6px; }
 .problem-figure { --fig-bg: var(--surface); color: var(--text); margin: 14px 0; text-align: center; }
 .problem-figure svg { max-width: 100%; height: auto; }
-.problem-conditions { border: 1px solid var(--text); padding: 10px 12px; margin: 12px 0; }
+.problem-conditions { border: 1px solid var(--text); padding: 10px; margin: 12px 0; position: relative; font-size: 0.95em; }
+.problem-conditions.titled { margin-top: 22px; padding-top: 16px; }
+.box-title { position: absolute; top: -0.8em; left: 50%; transform: translateX(-50%); background: var(--surface); padding: 0 8px; white-space: nowrap; }
+.cond p + p, .cond .katex-display + p { margin-top: 6px; }
 .cond { display: flex; gap: 6px; }
 .cond + .cond { margin-top: 6px; }
 .cond-label { flex: none; }

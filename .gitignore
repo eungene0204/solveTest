@@ -1,6 +1,8 @@
 node_modules/
-dist/
-.astro/
+out/
+.next/
+next-env.d.ts
+*.tsbuildinfo
 .env
 .env.*
 !.env.example

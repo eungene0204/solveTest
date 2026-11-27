@@ -1,7 +1,7 @@
 /**
  * 시험 회차 등록부.
  * 회차마다 공식 원문 링크와 이용 조건 확인 기록을 함께 둔다(기획안 "원문 이용과 시험별 확장").
- * 이 파일은 astro:content에 의존하지 않으므로 클라이언트 스크립트와 테스트에서도 import할 수 있다.
+ * 이 파일은 파일 시스템(node:fs)에 의존하지 않으므로 클라이언트 스크립트와 테스트에서도 import할 수 있다.
  */
 
 export const EXAM_KINDS = ['suneung', 'june', 'sept'] as const;
