@@ -1,0 +1,109 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 14
+paperType: odd
+paperPage: 5
+paperCrop: [0.513, 0.128, 0.902, 0.546]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    그림과 같이 $\overline{\mathrm{AB}}=3$, $\overline{\mathrm{BC}}=4$ 이고 $\angle\mathrm{B}=\dfrac{\pi}{2}$ 인 직각삼각형 ABC가 있다. 선분 AB를 $2:1$ 로 내분하는 점을 D, 점 A를 중심으로 하고 반지름의 길이가 $\overline{\mathrm{AD}}$ 인 원이 선분 AC와 만나는 점을 E, 직선 AB가 이 원과 만나는 점 중 D가 아닌 점을 F라 하고, 호 EF 위의 점 G를 $\overline{\mathrm{CG}}=2\sqrt{6}$ 이 되도록 잡는다. 세 점 C, E, G를 지나는 원 위의 점 H가 $\angle\mathrm{HCG}=\angle\mathrm{BAC}$ 를 만족시킬 때, 선분 GH의 길이는? [4점]
+  figure: 2026-suneung-math-14
+  choices: ['$\dfrac{6\sqrt{15}}{5}$', '$\dfrac{38\sqrt{10}}{25}$', '$\dfrac{14\sqrt{3}}{5}$', '$\dfrac{32\sqrt{15}}{25}$', '$\dfrac{8\sqrt{10}}{5}$']
+format: choice
+answer:
+  value: '\frac{32\sqrt{15}}{25}'
+  choice: 4
+status: published
+difficulty: hard
+concepts:
+  - { label: 사인법칙, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 코사인법칙, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  선분 GH는 원 CEG의 현이고, 그 현을 바라보는 원주각이 $\angle\mathrm{HCG}$ 다. 사인법칙을 쓰려면 이 원의 반지름이 필요하다. 반지름은 삼각형 CEG만으로 구할 수 있을까?
+firstIdea: |
+  H의 위치를 직접 찾을 필요가 없다. 원 CEG에서 현 GH에 대한 원주각이 $\angle\mathrm{HCG}=\angle\mathrm{BAC}$ 이므로 사인법칙으로 $\overline{\mathrm{GH}}=2R\sin(\angle\mathrm{BAC})$ 이다. 그래서 문제는 **삼각형 CEG의 외접원의 반지름 $R$** 을 구하는 것으로 바뀌고, 그러려면 삼각형 CEG의 세 변을 알아야 한다.
+steps:
+  - title: 기본 길이를 정리한다
+    body: |
+      $\overline{\mathrm{AC}}=5$, $\overline{\mathrm{AD}}=2$ 이므로 원의 반지름은 2이고 $\overline{\mathrm{AE}}=\overline{\mathrm{AG}}=2$, $\overline{\mathrm{CE}}=5-2=3$.
+      $\angle\mathrm{BAC}=\alpha$ 라 하면 $\cos\alpha=\dfrac{3}{5}$, $\sin\alpha=\dfrac{4}{5}$.
+    why: |
+      E와 G는 모두 A가 중심인 원 위의 점이라 A까지의 거리가 2다.
+  - title: 삼각형 ACG에서 $\angle\mathrm{CAG}$ 의 코사인
+    body: |
+      $$
+      \begin{aligned}
+      &\cos(\angle\mathrm{CAG})\\
+      &=\frac{2^2+5^2-(2\sqrt{6})^2}{2\times2\times5}=\frac{1}{4}
+      \end{aligned}
+      $$
+    why: |
+      삼각형 ACG는 세 변 $2,\ 5,\ 2\sqrt{6}$ 을 모두 안다. E가 선분 AC 위에 있으므로 이 각이 곧 $\angle\mathrm{EAG}$ 이기도 하다.
+  - title: $\overline{\mathrm{EG}}$ 를 구한다
+    body: |
+      삼각형 AEG에서
+      $$
+      \begin{aligned}
+      \overline{\mathrm{EG}}^{\,2}&=2^2+2^2-2\times2\times2\times\frac{1}{4}\\
+      &=6
+      \end{aligned}
+      $$
+      이므로 $\overline{\mathrm{EG}}=\sqrt{6}$.
+    why: |
+      앞 단계에서 구한 각을 두 반지름이 끼고 있으므로 코사인법칙으로 바로 나온다.
+  - title: 삼각형 CEG의 외접원의 반지름
+    body: |
+      세 변이 $\overline{\mathrm{CE}}=3$, $\overline{\mathrm{EG}}=\sqrt{6}$, $\overline{\mathrm{CG}}=2\sqrt{6}$ 이므로
+      $$
+      \begin{aligned}
+      \cos(\angle\mathrm{CEG})&=\frac{9+6-24}{2\times3\times\sqrt{6}}\\
+      &=-\frac{\sqrt{6}}{4}\\
+      \sin(\angle\mathrm{CEG})&=\frac{\sqrt{10}}{4}
+      \end{aligned}
+      $$
+      사인법칙에서
+      $$
+      \begin{aligned}
+      2R&=\frac{\overline{\mathrm{CG}}}{\sin(\angle\mathrm{CEG})}\\
+      &=\frac{2\sqrt{6}}{\sqrt{10}/4}=\frac{8\sqrt{15}}{5}
+      \end{aligned}
+      $$
+    why: |
+      외접원의 반지름은 한 변과 그 대각의 사인으로 정해진다. 길이를 아는 변 CG와 그 대각 E를 쓴다.
+  - title: 원주각으로 GH를 구한다
+    body: |
+      H도 같은 원 위에 있고 현 GH에 대한 원주각이 $\angle\mathrm{HCG}=\alpha$ 이므로
+      $$
+      \begin{aligned}
+      \overline{\mathrm{GH}}&=2R\sin\alpha=\frac{8\sqrt{15}}{5}\times\frac{4}{5}\\
+      &=\frac{32\sqrt{15}}{25}
+      \end{aligned}
+      $$
+    why: |
+      같은 원에서는 어느 원주각을 써도 사인법칙의 $2R$ 이 같다. 그래서 H의 정확한 위치를 몰라도 된다.
+pitfalls:
+  - |
+    H의 좌표를 직접 구하려고 하면 계산이 매우 길어진다. 현 GH와 원주각의 관계를 먼저 떠올린다.
+  - |
+    $\cos(\angle\mathrm{CEG})$ 가 음수(둔각)인데 $\sin$ 을 구할 때 부호를 고민하는 실수. 삼각형의 내각은 사인이 항상 양수다.
+  - |
+    원의 반지름을 $\overline{\mathrm{AB}}=3$ 이나 $\overline{\mathrm{DB}}=1$ 로 잡는 실수. 반지름은 $\overline{\mathrm{AD}}=2$ 다.
+related: [2027-suneung-math-10, 2026-suneung-math-18]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: independent-resolve
+    by: Claude
+    date: 2026-11-27
+    note: 해설 미참조 별도 에이전트가 원문 이미지만 보고 재풀이, 답 32√15/25(④) 일치. 좌표로 H를 찾아 수치 검증
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

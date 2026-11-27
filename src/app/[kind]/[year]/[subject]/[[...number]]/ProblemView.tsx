@@ -11,11 +11,29 @@ import { publishBlockers } from '../../../../../lib/schema';
 export type ProblemParams = { kind: string; year: string; subject: string; number: string };
 
 const CIRCLED = ['①', '②', '③', '④', '⑤'];
-/** "(가) 내용", "ㄱ. 내용" → 라벨과 내용으로 나눈다. */
+/** "(가) 내용", "ㄱ. 내용", "• 내용" → 라벨과 내용으로 나눈다. */
 const splitCondition = (src: string) => {
-  const m = src.match(/^\s*(\([^)]+\)|[ㄱ-ㅎ]\.)\s*([\s\S]*)$/);
+  const m = src.match(/^\s*(\([^)]+\)|[ㄱ-ㅎ]\.|•)\s*([\s\S]*)$/);
   return m ? { label: m[1], body: m[2] } : { label: '', body: src };
 };
+
+/** 문제 본문의 테두리 상자 (조건, <보기>, 증명 과정 등) */
+function ConditionBox({ items, title }: { items: string[]; title?: string }) {
+  return (
+    <div className={title ? 'problem-conditions titled' : 'problem-conditions'}>
+      {title && <div className="box-title">&lt;{title}&gt;</div>}
+      {items.map((c, i) => {
+        const { label, body } = splitCondition(c);
+        return (
+          <div className="cond" key={i}>
+            {label && <span className="cond-label">{label}</span>}
+            <div {...html(renderMarkdown(body))} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 const fmt = (x: Date) => x.toISOString().slice(0, 10);
 /** 빌드 시점에 렌더링한 HTML(마크다운·KaTeX·SVG)을 넣는다. 원시 HTML은 renderMarkdown 단계에서 이미 막혀 있다. */
 const html = (__html: string) => ({ dangerouslySetInnerHTML: { __html } });
@@ -120,20 +138,9 @@ export default function ProblemView({ params }: { params: ProblemParams }) {
           <section className="problem" aria-label="문제">
             <div className="problem-text" {...html(`<span class="problem-no">${d.number}.</span>${renderMarkdown(pr.body)}`)} />
             {pr.figure && <div className="problem-figure" {...html(figureSvg(pr.figure))} />}
-            {pr.conditions && (
-              <div className={pr.boxTitle ? 'problem-conditions titled' : 'problem-conditions'}>
-                {pr.boxTitle && <div className="box-title">&lt;{pr.boxTitle}&gt;</div>}
-                {pr.conditions.map((c, i) => {
-                  const { label, body } = splitCondition(c);
-                  return (
-                    <div className="cond" key={i}>
-                      {label && <span className="cond-label">{label}</span>}
-                      <div {...html(renderMarkdown(body))} />
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+            {pr.conditions && <ConditionBox items={pr.conditions} title={pr.boxTitle} />}
+            {pr.middle && <div className="problem-text" {...html(renderMarkdown(pr.middle))} />}
+            {pr.conditions2 && <ConditionBox items={pr.conditions2} />}
             {pr.after && <div className="problem-text" {...html(renderMarkdown(pr.after))} />}
             {pr.choices && (
               <ol className="choices">

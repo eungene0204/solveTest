@@ -1,0 +1,97 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 15
+paperType: odd
+paperPage: 6
+paperCrop: [0.099, 0.128, 0.492, 0.396]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    함수 $f(x)$ 가
+
+    $$
+    f(x)=\begin{cases}-x^2 & (x<0)\\ x^2-x & (x\ge0)\end{cases}
+    $$
+
+    이고, 양수 $a$ 에 대하여 함수 $g(x)$ 를
+
+    $$
+    g(x)=\begin{cases}ax+a & (x<-1)\\ 0 & (-1\le x<1)\\ ax-a & (x\ge1)\end{cases}
+    $$
+
+    이라 하자. 함수 $h(x)=\displaystyle\int_0^x\big(g(t)-f(t)\big)\,dt$ 가 오직 하나의 극값을 갖도록 하는 $a$ 의 최댓값을 $k$ 라 하자. $a=k$ 일 때, $k+h(3)$ 의 값은? [4점]
+  choices: ['$\dfrac{9}{2}$', '$\dfrac{11}{2}$', '$\dfrac{13}{2}$', '$\dfrac{15}{2}$', '$\dfrac{17}{2}$']
+format: choice
+answer:
+  value: '\frac{15}{2}'
+  choice: 4
+status: published
+difficulty: hard
+concepts:
+  - { label: 정적분으로 정의된 함수, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+  - { label: 함수의 극대·극소, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  $h'(x)=g(x)-f(x)$ 다. 극값은 이 식의 부호가 바뀌는 곳에서 생긴다. 구간을 넷으로 나눠 $g(x)-f(x)$ 를 각각 정리해 보자.
+firstIdea: |
+  $g-f$ 는 연속이므로 $h'(x)=g(x)-f(x)$ 이고, $h$ 의 극값은 **$g(x)-f(x)$ 의 부호가 바뀌는 점**이다. 그래서 $g-f$ 를 구간별 식으로 쓰고, 부호가 바뀌는 점이 정확히 하나가 되는 $a$ 의 범위를 찾는다.
+steps:
+  - title: $h'(x)=g(x)-f(x)$ 를 구간별로 쓴다
+    body: |
+      - $x<-1$: $h'(x)=x^2+ax+a$
+      - $-1\le x<0$: $h'(x)=x^2$
+      - $0\le x<1$: $h'(x)=x(1-x)$
+      - $x\ge1$: $h'(x)=(x-1)(a-x)$
+    why: |
+      $g$ 와 $f$ 는 모두 연속이라 $g-f$ 도 연속이고, 정적분으로 정의된 함수의 도함수는 피적분함수다. $x\ge1$ 에서 $a(x-1)-x(x-1)=(x-1)(a-x)$.
+  - title: $-1\le x$ 쪽에서는 극값이 항상 하나
+    body: |
+      $-1\le x<1$ 에서 $h'(x)\ge0$ 이고 0이 되는 $x=0$ 의 양쪽도 모두 0 이상이라 부호가 바뀌지 않는다.
+      $x\ge1$ 에서는 $a>1$ 이면 $x=a$ 에서, $a\le1$ 이면 $x=1$ 에서 $h'$ 의 부호가 양에서 음으로 바뀐다. 따라서 이 쪽에서 극댓값이 정확히 하나 생긴다.
+    why: |
+      $x=1$ 의 바로 왼쪽은 $x(1-x)>0$ 이고, 오른쪽은 $(x-1)(a-x)$ 의 부호를 따른다.
+  - title: $x<-1$ 쪽에서 극값이 생기지 않을 조건
+    body: |
+      $p(x)=x^2+ax+a$ 라 하면 $p(-1)=1>0$ 이고 $x\to-\infty$ 일 때도 양수다.
+      - $a^2-4a>0$, 즉 $a>4$ 이면 꼭짓점 $x=-\dfrac{a}{2}<-2$ 이고 $p$ 가 $x<-1$ 에서 두 번 부호를 바꾼다. 극값이 2개 더 생긴다.
+      - $a\le4$ 이면 $p(x)\ge0$ 이라 부호가 바뀌지 않는다.
+
+      따라서 극값이 오직 하나인 $a$ 의 범위는 $0<a\le4$ 이고 $k=4$.
+    why: |
+      $a=4$ 이면 $p(x)=(x+2)^2$ 으로 0이 되지만 부호는 바뀌지 않는다. 그래서 최댓값 4가 범위에 포함된다.
+  - title: $a=4$ 일 때 $h(3)$
+    body: |
+      $$
+      \begin{aligned}
+      h(3)&=\int_0^1(t-t^2)\,dt\\
+      &\quad+\int_1^3(t-1)(4-t)\,dt\\
+      &=\frac{1}{6}+\frac{10}{3}=\frac{7}{2}
+      \end{aligned}
+      $$
+      따라서 $k+h(3)=4+\dfrac{7}{2}=\dfrac{15}{2}$.
+    why: |
+      $\displaystyle\int_1^3(-t^2+5t-4)\,dt=\left[-\frac{t^3}{3}+\frac{5}{2}t^2-4t\right]_1^3=\frac{3}{2}+\frac{11}{6}=\frac{10}{3}$.
+pitfalls:
+  - |
+    $h'(x)=0$ 인 점을 모두 극값으로 세는 실수. $x=0$ 이나 $a=4$ 일 때의 $x=-2$ 처럼 부호가 바뀌지 않는 점은 극값이 아니다.
+  - |
+    $a=4$ 를 범위에서 빼서 "최댓값이 없다"고 판단하는 실수. 중근에서는 부호가 바뀌지 않으므로 $a=4$ 도 조건을 만족한다.
+  - |
+    $h(3)$ 을 계산할 때 $0\le t<1$ 구간의 $\displaystyle\int_0^1(t-t^2)\,dt$ 를 빠뜨리는 실수.
+related: []
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: independent-resolve
+    by: Claude
+    date: 2026-11-27
+    note: 해설 미참조 별도 에이전트가 원문 이미지만 보고 재풀이, 답 15/2(④) 일치. a=3.9, 4.1에서 극값 개수 수치 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

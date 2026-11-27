@@ -51,7 +51,7 @@ src/lib/exams.ts ─────────┼──▶  zod 스키마 검사  
 필드 정의와 주석은 `src/lib/schema.ts`가 원본이다. 주요 묶음:
 
 - **식별**: `exam {year, kind, subject, part}`, `number`, `paperType`(odd/even), `paperPage`
-- **문제 본문**: `problem {body, figure?, conditions?, after?, choices?}` → 화면 순서도 이 순서
+- **문제 본문**: `problem {body, figure?, conditions?, boxTitle?, middle?, conditions2?, after?, choices?}` → 화면 순서도 이 순서
 - **정답**: `format`(choice/short), `answer {value, choice?, choiceOtherPaper?}`
 - **해설**: `hint`, `firstIdea`, `steps[] {title, body, why}`, `pitfalls[]`, `concepts[]`(2015·2022 과목명), `related[]`
 - **운영**: `status`(draft/published/withdrawn), `difficulty`, `reviews[]`, `changelog[]`, `minutes`

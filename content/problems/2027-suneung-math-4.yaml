@@ -14,7 +14,7 @@ format: choice
 answer:
   value: "4"
   choice: 4
-status: draft
+status: published
 difficulty: basic
 concepts:
   - { label: 좌극한과 우극한, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
@@ -50,4 +50,13 @@ reviews:
     by: Claude
     date: 2026-11-27
     note: 평가원 정답표(홀·짝수형, 2026-11-19 공개 가채점본)와 값·선택지 번호 대조 일치. 12/1 확정본 재확인 필요.
-changelog: []
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

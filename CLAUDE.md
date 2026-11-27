@@ -19,7 +19,7 @@
 
 - **완료 기준**: `npm test`, `npm run check`, `npm run build:preview`, `npm run build` 네 개가 모두 통과하고, 바꾼 문항 페이지를 375px 폭에서 확인해 가로 넘침이 없어야 끝난 것이다.
 - **문항 콘텐츠**: `content/problems/<id>.yaml` 한 파일이 한 문항이다. 공개 조건은 `src/lib/schema.ts`의 `publishBlockers`가 유일한 기준이며, 조건을 우회하지 말고 빠진 검수 기록을 채운다.
-- **검수 기록의 주체**: `reviews`의 `by`에는 실제로 그 검수를 한 주체를 적는다. Claude가 한 것은 `answer-check`(공식 정답표 대조)까지이고, `solution-review`·`independent-resolve`·`mobile-preview`는 사람이 한다.
+- **검수**: 모든 검수 단계를 Claude가 한다(ADR 0006, 절차는 `docs/review-sheet.md`). `by`에는 실제로 검수한 주체를, `note`에는 방법을 적는다. 독립 재풀이는 해설을 보지 않은 새 맥락에서 푼 것만 인정한다.
 - **문제 본문**: 원문을 그대로 옮겨 적고(`problem` 필드), 그래프는 `src/figures/<id>.svg`로 다시 그린다. 캡처 이미지는 화면에 쓰지 않는다(ADR 0003).
 - **긴 별도 줄 수식**: 375px에서 넘치면 `aligned`로 나눈다.
 - **정답이 의심되면** 즉시 사용자에게 알리고, 공개된 문항이면 `status: withdrawn`을 제안한다.

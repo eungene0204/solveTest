@@ -1,0 +1,76 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 22
+paperType: odd
+paperPage: 8
+paperCrop: [0.513, 0.128, 0.902, 0.282]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    곡선 $y=\log_{16}(8x+2)$ 위의 점 $\mathrm{A}(a,\,b)$ 와 곡선 $y=4^{x-1}-\dfrac{1}{2}$ 위의 점 B가 제1사분면에 있다. 점 A를 직선 $y=x$ 에 대하여 대칭이동한 점이 직선 OB 위에 있고 선분 AB의 중점의 좌표가 $\left(\dfrac{77}{8},\,\dfrac{133}{8}\right)$ 일 때, $a\times b=\dfrac{q}{p}$ 이다. $p+q$ 의 값을 구하시오. (단, O는 원점이고, $p$ 와 $q$ 는 서로소인 자연수이다.) [4점]
+format: short
+answer:
+  value: "457"
+status: published
+difficulty: hard
+concepts:
+  - { label: 지수함수와 로그함수의 관계(역함수), course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 로그함수의 그래프, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $y=\log_{16}(8x+2)$ 의 역함수를 구해 $y=4^{x-1}-\dfrac{1}{2}$ 와 비교해 보자. 두 식 사이에 간단한 배율 관계가 보일까?
+firstIdea: |
+  $y=\log_{16}(8x+2)$ 의 역함수는 $y=2^{4x-3}-\dfrac{1}{4}$ 이고, $y=4^{x-1}-\dfrac{1}{2}=2^{2x-2}-\dfrac{1}{2}$ 은 이 역함수의 그래프를 **원점을 중심으로 2배 확대**한 것이다. A를 $y=x$ 에 대칭이동한 점 $\mathrm{A}'(b,\,a)$ 는 역함수 위에 있으므로, 그 2배인 $(2b,\,2a)$ 는 두 번째 곡선 위에 있으면서 직선 $\mathrm{OA}'$ 위에 있다. 이것이 B다.
+steps:
+  - title: 두 곡선의 관계를 찾는다
+    body: |
+      $y=\log_{16}(8x+2)$ 에서 $16^y=8x+2$, $x=2^{4y-3}-\dfrac{1}{4}$ 이므로 역함수는 $y=2^{4x-3}-\dfrac{1}{4}$.
+      점 $(X,\,Y)$ 가 이 위에 있으면 $(2X,\,2Y)$ 는
+      $$
+      2Y=2^{4X-2}-\frac{1}{2}=4^{2X-1}-\frac{1}{2}
+      $$
+      을 만족하므로 곡선 $y=4^{x-1}-\dfrac{1}{2}$ 위에 있다.
+    why: |
+      두 지수식의 밑을 2로 통일하면 지수 $4X-2$ 와 $2(2X)-2$ 가 같아진다는 것이 보인다.
+  - title: B의 좌표를 $a,\ b$ 로 쓴다
+    body: |
+      $\mathrm{A}'(b,\,a)$ 는 역함수 위의 점이므로 $(2b,\,2a)$ 는 두 번째 곡선 위에 있고, 원점과 $\mathrm{A}'$ 을 잇는 직선 위에도 있다. 따라서 $\mathrm{B}(2b,\,2a)$ 로 놓는다.
+    why: |
+      문제의 조건 "A′이 직선 OB 위에 있다"는 B가 원점에서 A′ 방향으로 뻗은 직선 위에 있다는 뜻이다. 원점 중심 확대는 그 직선 위에서 점을 옮긴다.
+  - title: 중점 조건으로 $a,\ b$ 를 구한다
+    body: |
+      $$
+      \frac{a+2b}{2}=\frac{77}{8},\qquad \frac{b+2a}{2}=\frac{133}{8}
+      $$
+      즉 $a+2b=\dfrac{77}{4}$, $2a+b=\dfrac{133}{4}$. 풀면 $b=\dfrac{7}{4}$, $a=\dfrac{63}{4}$.
+
+      검산: $\log_{16}\left(8\times\dfrac{63}{4}+2\right)=\log_{16}128=\dfrac{7}{4}=b$ 로 A가 곡선 위에 있다. B$\left(\dfrac{7}{2},\,\dfrac{63}{2}\right)$ 도 $4^{\frac{5}{2}}-\dfrac{1}{2}=\dfrac{63}{2}$ 으로 맞다.
+    why: |
+      B를 $a, b$ 로 나타냈기 때문에 중점 조건이 연립일차방정식이 된다. 얻은 값이 모든 조건을 만족하는지 마지막에 확인한다.
+  - title: 값을 계산한다
+    body: |
+      $a\times b=\dfrac{63}{4}\times\dfrac{7}{4}=\dfrac{441}{16}$ 이므로 $p=16$, $q=441$, $p+q=457$.
+    why: |
+      $441=3^2\times7^2$ 와 $16=2^4$ 는 서로소다.
+pitfalls:
+  - |
+    두 곡선이 서로 역함수라고 착각하는 실수. 두 번째 곡선은 역함수를 2배 확대한 것이다.
+  - |
+    B의 좌표를 미지수 두 개로 따로 두고 지수·로그 방정식을 직접 풀려고 하면 막힌다. 곡선 사이의 관계로 B를 $a, b$ 로 나타내는 것이 핵심이다.
+related: [2026-suneung-math-10]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: independent-resolve
+    by: Claude
+    date: 2026-11-27
+    note: 해설 미참조 별도 에이전트가 원문 이미지만 보고 재풀이, 답 457 일치. a를 자유변수로 두고 해의 유일성 수치 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

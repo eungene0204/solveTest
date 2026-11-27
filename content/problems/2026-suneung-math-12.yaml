@@ -1,0 +1,66 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 12
+paperType: odd
+paperPage: 4
+paperCrop: [0.513, 0.128, 0.902, 0.246]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    등비수열 $\{a_n\}$ 이
+
+    $$
+    2(a_1+a_4+a_7)=a_4+a_7+a_{10}=6
+    $$
+
+    을 만족시킬 때, $a_{10}$ 의 값은? [4점]
+  choices: ['$\dfrac{22}{7}$', '$\dfrac{24}{7}$', '$\dfrac{26}{7}$', '$\dfrac{30}{7}$', '$\dfrac{32}{7}$']
+format: choice
+answer:
+  value: '\frac{24}{7}'
+  choice: 2
+status: published
+difficulty: standard
+concepts:
+  - { label: 등비수열의 일반항, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $a_4+a_7+a_{10}$ 은 $a_1+a_4+a_7$ 의 각 항을 세 칸씩 뒤로 민 것이다. 두 합의 비는 공비의 몇 제곱일까?
+firstIdea: |
+  $a_4=a_1r^3$, $a_7=a_4r^3$, $a_{10}=a_7r^3$ 이므로 $a_4+a_7+a_{10}=r^3(a_1+a_4+a_7)$ 이다. 주어진 식이 두 합의 비를 알려 주므로 $r^3$ 이 바로 나오고, 그다음 $a_{10}$ 을 기준으로 합을 다시 쓴다.
+steps:
+  - title: 두 합의 비에서 $r^3$ 을 구한다
+    body: |
+      $S=a_1+a_4+a_7$ 이라 하면 $2S=6$ 이므로 $S=3$, 그리고 $a_4+a_7+a_{10}=r^3S=6$ 이므로 $r^3=2$.
+    why: |
+      세 칸 뒤의 항은 공비를 세 번 곱한 값이다. 합 전체에도 같은 $r^3$ 이 곱해진다.
+  - title: $a_{10}$ 을 기준으로 합을 쓴다
+    body: |
+      $$
+      \begin{aligned}
+      &a_4+a_7+a_{10}\\
+      &=a_{10}\left(\frac{1}{r^6}+\frac{1}{r^3}+1\right)\\
+      &=a_{10}\left(\frac{1}{4}+\frac{1}{2}+1\right)=\frac{7}{4}a_{10}
+      \end{aligned}
+      $$
+      $\dfrac{7}{4}a_{10}=6$ 이므로 $a_{10}=\dfrac{24}{7}$.
+    why: |
+      구하는 항을 기준으로 앞의 항들을 $r^3$ 으로 나눠 쓰면 $r$ 자체를 구하지 않아도 된다.
+pitfalls:
+  - |
+    $2(a_1+a_4+a_7)=a_4+a_7+a_{10}$ 에서 $r^3=\dfrac{1}{2}$ 로 뒤집는 실수. 뒤의 합이 앞의 합의 2배다.
+  - |
+    $r^6=4$ 를 $r^6=2^3$ 처럼 지수를 잘못 계산하는 실수.
+related: [2027-suneung-math-3]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

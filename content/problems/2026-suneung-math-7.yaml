@@ -1,0 +1,60 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 7
+paperType: odd
+paperPage: 2
+paperCrop: [0.513, 0.128, 0.902, 0.442]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    두 곡선 $y=x^2+3$, $y=-\dfrac{1}{5}x^2+3$ 과 직선 $x=2$ 로 둘러싸인 부분의 넓이는? [3점]
+  choices: ['$\dfrac{18}{5}$', '$\dfrac{7}{2}$', '$\dfrac{17}{5}$', '$\dfrac{33}{10}$', '$\dfrac{16}{5}$']
+  figure: 2026-suneung-math-7
+format: choice
+answer:
+  value: '\frac{16}{5}'
+  choice: 5
+  choiceOtherPaper: 1   # 짝수형 ①
+status: published
+difficulty: basic
+concepts:
+  - { label: 두 곡선 사이의 넓이, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  두 곡선은 어디에서 만날까? 그 점과 직선 $x=2$ 사이에서 어느 곡선이 위에 있는지 보자.
+firstIdea: |
+  두 곡선 사이의 넓이는 $\displaystyle\int(\text{위 곡선}-\text{아래 곡선})\,dx$ 다. 그래서 적분 구간의 끝인 두 곡선의 교점과, 그 구간에서 위아래 관계를 먼저 정한다.
+steps:
+  - title: 적분 구간을 정한다
+    body: |
+      $x^2+3=-\dfrac{1}{5}x^2+3$ 에서 $\dfrac{6}{5}x^2=0$, $x=0$. 둘러싸인 부분은 $0\le x\le2$ 이고, 이 구간에서 $y=x^2+3$ 이 위에 있다.
+    why: |
+      두 곡선은 $(0,\,3)$ 에서만 만나고, 그림처럼 그 점과 직선 $x=2$ 사이가 둘러싸인 부분이다.
+  - title: 적분한다
+    body: |
+      $$
+      \begin{aligned}
+      &\int_0^2\left\{(x^2+3)-\left(-\frac{1}{5}x^2+3\right)\right\}dx\\
+      &=\int_0^2\frac{6}{5}x^2\,dx=\frac{6}{5}\times\frac{8}{3}=\frac{16}{5}
+      \end{aligned}
+      $$
+    why: |
+      두 식을 빼면 상수 3이 상쇄되어 $\dfrac{6}{5}x^2$ 하나만 남는다.
+pitfalls:
+  - |
+    두 식을 빼면서 $-\left(-\dfrac{1}{5}x^2\right)$ 의 부호를 놓쳐 $\dfrac{4}{5}x^2$ 으로 계산하는 실수.
+  - |
+    짝수형은 정답 선택지가 ①이다. 번호가 아니라 값 $\dfrac{16}{5}$ 로 확인한다.
+related: []
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

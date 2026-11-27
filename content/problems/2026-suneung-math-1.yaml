@@ -1,0 +1,53 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 1
+paperType: odd
+paperPage: 1
+paperCrop: [0.099, 0.230, 0.492, 0.284]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    $9^{\frac{1}{4}}\times3^{-\frac{1}{2}}$ 의 값은? [2점]
+  choices: ["1", '$\sqrt{3}$', "3", '$3\sqrt{3}$', "9"]
+format: choice
+answer:
+  value: "1"
+  choice: 1
+status: published
+difficulty: basic
+concepts:
+  - { label: 지수법칙, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  9를 3의 거듭제곱으로 바꾸면 두 수의 밑이 같아진다.
+firstIdea: |
+  밑이 다른 거듭제곱의 곱은 바로 계산하기 어렵다. $9=3^2$ 이므로 밑을 3으로 통일하면 지수의 덧셈 한 번으로 끝난다.
+steps:
+  - title: 밑을 3으로 통일한다
+    body: |
+      $9^{\frac{1}{4}}=\left(3^2\right)^{\frac{1}{4}}=3^{\frac{1}{2}}$
+    why: |
+      거듭제곱의 거듭제곱은 지수끼리 곱한다. $2\times\dfrac{1}{4}=\dfrac{1}{2}$.
+  - title: 지수를 더한다
+    body: |
+      $3^{\frac{1}{2}}\times3^{-\frac{1}{2}}=3^{0}=1$
+    why: |
+      밑이 같으면 곱은 지수의 합이다. 지수의 합이 0이면 값은 1이다.
+pitfalls:
+  - |
+    $\left(3^2\right)^{\frac{1}{4}}$ 을 $3^{2+\frac{1}{4}}$ 처럼 지수를 더하는 실수. 거듭제곱의 거듭제곱은 지수를 곱한다.
+  - |
+    $3^{-\frac{1}{2}}$ 을 $-\sqrt{3}$ 으로 읽는 실수. 음의 지수는 역수 $\dfrac{1}{\sqrt{3}}$ 이다.
+related: [2027-suneung-math-1]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

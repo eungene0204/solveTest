@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { EXAMS } from '../src/lib/exams';
 import { problemFields, problemSchema, publishBlockers } from '../src/lib/schema';
 
 const base = {
@@ -42,8 +43,10 @@ describe('공개 조건', () => {
     const p = problemFields.parse({ ...base, hint: 'TODO: 힌트' });
     expect(publishBlockers(p)).toContain('본문에 TODO가 남아 있음');
   });
-  it('문제지 링크가 없는 회차는 공개 불가', () => {
-    const p = problemFields.parse({ ...base, exam: { ...base.exam, year: 2026 } });
+  // 문제지 링크가 아직 없는 회차로 검사한다. 모든 회차에 링크가 채워지면 건너뛴다.
+  const noPaper = EXAMS.find((e) => !e.paperUrl);
+  it.skipIf(!noPaper)('문제지 링크가 없는 회차는 공개 불가', () => {
+    const p = problemFields.parse({ ...base, exam: { ...base.exam, year: noPaper!.year } });
     expect(publishBlockers(p)).toContain('회차의 공식 문제지 링크(paperUrl) 없음');
   });
   it('문제 본문이 없으면 공개 불가', () => {

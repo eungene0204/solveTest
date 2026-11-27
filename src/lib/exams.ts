@@ -79,7 +79,9 @@ export const EXAMS: Exam[] = [
     part: 'common',
     count: 22,
     curriculum: '2015',
-    // TODO: 평가원 공식 문제지 PDF 주소와 정답표 위치를 확인해 채운다.
+    // 평가원 수능 기출문제 게시판(2025-11-17 등록)의 첨부파일. 문제지 PDF는 선택과목·짝수형까지 40쪽이며 공통 홀수형은 1~8쪽.
+    paperUrl: 'https://www.suneung.re.kr/boardCnts/fileDown.do?fileSeq=f9055b3484e9176cea7c74b9819a7d2c',
+    answerKeyUrl: 'https://www.suneung.re.kr/boardCnts/fileDown.do?fileSeq=970fb683af8df94b36d29efe00741532',
     rights: { ...UNCHECKED },
   },
   {

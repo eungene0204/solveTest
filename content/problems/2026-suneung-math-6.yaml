@@ -1,0 +1,70 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 6
+paperType: odd
+paperPage: 2
+paperCrop: [0.099, 0.472, 0.492, 0.602]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    1보다 큰 두 실수 $a,\,b$ 가
+
+    $$
+    \log_a b=3,\quad \log_3\frac{b}{a}=\frac{1}{2}
+    $$
+
+    을 만족시킬 때, $\log_9 ab$ 의 값은? [3점]
+  choices: ['$\dfrac{3}{8}$', '$\dfrac{1}{2}$', '$\dfrac{5}{8}$', '$\dfrac{3}{4}$', '$\dfrac{7}{8}$']
+format: choice
+answer:
+  value: '\frac{1}{2}'
+  choice: 2
+status: published
+difficulty: basic
+concepts:
+  - { label: 로그의 정의, course2015: 수학Ⅰ, course2022: 대수 }
+  - { label: 로그의 성질, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  $\log_a b=3$ 은 $b$ 를 $a$ 로 나타낼 수 있게 해 준다. 그러면 나머지 두 식이 모두 $a$ 하나의 식이 된다.
+firstIdea: |
+  로그의 정의로 $\log_a b=3$ 을 $b=a^3$ 으로 바꾸면 $\dfrac{b}{a}=a^2$, $ab=a^4$ 처럼 모든 식이 $a$ 의 거듭제곱이 된다. 그래서 $\log_3 a$ 하나만 구하면 된다.
+steps:
+  - title: $b$ 를 $a$ 로 나타낸다
+    body: |
+      $\log_a b=3$ 이므로 $b=a^3$.
+    why: |
+      $\log_a b=c \iff b=a^c$ 이다.
+  - title: 두 번째 조건에서 $\log_3 a$ 를 구한다
+    body: |
+      $\log_3\dfrac{b}{a}=\log_3 a^2=2\log_3 a=\dfrac{1}{2}$ 이므로 $\log_3 a=\dfrac{1}{4}$.
+    why: |
+      $\dfrac{b}{a}=a^2$ 이고, 진수의 지수는 로그 앞으로 내릴 수 있다.
+  - title: 구하는 값을 계산한다
+    body: |
+      $$
+      \begin{aligned}
+      \log_9 ab&=\log_{3^2}a^4=\frac{4}{2}\log_3 a\\
+      &=2\times\frac{1}{4}=\frac{1}{2}
+      \end{aligned}
+      $$
+    why: |
+      밑이 $3^2$ 이면 $\log_{3^2}x=\dfrac{1}{2}\log_3 x$ 이다.
+pitfalls:
+  - |
+    $\log_9 ab$ 에서 밑 9를 3으로 바꿀 때 $\dfrac{1}{2}$ 을 빠뜨려 답을 1로 두는 실수. 선택지에 없으면 밑 변환을 다시 확인한다.
+  - |
+    $\log_3\dfrac{b}{a}$ 를 $\dfrac{\log_3 b}{\log_3 a}$ 로 바꾸는 실수. 몫의 로그는 로그의 차다.
+related: [2027-suneung-math-8]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

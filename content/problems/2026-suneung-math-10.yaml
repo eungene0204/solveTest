@@ -1,0 +1,63 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 10
+paperType: odd
+paperPage: 3
+paperCrop: [0.513, 0.128, 0.902, 0.262]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    상수 $a\,(a>1)$ 에 대하여 곡선 $y=a^x-2$ 위의 점 중 제1사분면에 있는 점 A를 지나고 $y$ 축에 평행한 직선이 $x$ 축과 만나는 점을 B, 곡선 $y=a^x-2$ 의 점근선과 만나는 점을 C라 하자. $\overline{\mathrm{AB}}=\overline{\mathrm{BC}}$ 이고 삼각형 AOC의 넓이가 8일 때, $a\times\overline{\mathrm{OB}}$ 의 값은? (단, O는 원점이다.) [4점]
+  choices: ['$2^{\frac{13}{6}}$', '$2^{\frac{7}{3}}$', '$2^{\frac{5}{2}}$', '$2^{\frac{8}{3}}$', '$2^{\frac{17}{6}}$']
+format: choice
+answer:
+  value: '2^{\frac{5}{2}}'
+  choice: 3
+status: published
+difficulty: standard
+concepts:
+  - { label: 지수함수의 그래프와 점근선, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  점 A의 $x$ 좌표를 $t$ 로 두고 A, B, C의 좌표를 모두 $t$ 로 써 보자. 점근선은 어떤 직선일까?
+firstIdea: |
+  $y=a^x-2$ 의 점근선은 $y=-2$ 이므로 A, B, C는 모두 직선 $x=t$ 위에 있고, $\overline{\mathrm{BC}}=2$ 로 고정된다. 그래서 $\overline{\mathrm{AB}}=\overline{\mathrm{BC}}$ 는 $a^t$ 를, 넓이 조건은 $t$ 를 정해 준다.
+steps:
+  - title: 세 점의 좌표를 쓴다
+    body: |
+      $\mathrm{A}(t,\,a^t-2)$, $\mathrm{B}(t,\,0)$, $\mathrm{C}(t,\,-2)$ $(t>0,\ a^t>2)$.
+    why: |
+      A가 제1사분면에 있으므로 $t>0$ 이고 $a^t-2>0$ 이다. 점근선은 $y=-2$ 다.
+  - title: $\overline{\mathrm{AB}}=\overline{\mathrm{BC}}$ 를 쓴다
+    body: |
+      $a^t-2=2$ 이므로 $a^t=4$, 즉 $\mathrm{A}(t,\,2)$.
+    why: |
+      두 선분 모두 세로 방향이라 $y$ 좌표의 차가 길이다.
+  - title: 넓이 조건으로 $t$ 를 구한다
+    body: |
+      삼각형 AOC는 밑변 $\overline{\mathrm{AC}}=4$, 높이 $t$ 이므로 $\dfrac{1}{2}\times4\times t=8$, $t=4$.
+
+      $a^4=4$ 에서 $a=\sqrt{2}$. 따라서
+      $$
+      a\times\overline{\mathrm{OB}}=\sqrt{2}\times4=2^{\frac{5}{2}}
+      $$
+    why: |
+      밑변 AC가 $y$ 축에 평행하므로 높이는 원점에서 직선 $x=t$ 까지의 거리 $t$ 다.
+pitfalls:
+  - |
+    점근선을 $x$ 축($y=0$)으로 착각하는 실수. $-2$ 만큼 평행이동했으므로 점근선은 $y=-2$ 다.
+  - |
+    삼각형 AOC의 밑변을 $\overline{\mathrm{AB}}$ 로 잡는 실수. 밑변은 A에서 C까지 $4$ 다.
+related: [2026-suneung-math-22]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

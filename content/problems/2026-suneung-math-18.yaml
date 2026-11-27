@@ -1,0 +1,49 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 18
+paperType: odd
+paperPage: 7
+paperCrop: [0.099, 0.128, 0.492, 0.192]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    $\overline{\mathrm{AB}}=5$, $\overline{\mathrm{AC}}=6$ 이고 $\cos(\angle\mathrm{BAC})=-\dfrac{3}{5}$ 인 삼각형 ABC의 넓이를 구하시오. [3점]
+format: short
+answer:
+  value: "12"
+status: published
+difficulty: basic
+concepts:
+  - { label: 삼각형의 넓이, course2015: 수학Ⅰ, course2022: 대수 }
+hint: |
+  두 변과 그 끼인각을 안다. 넓이 공식에는 끼인각의 사인이 필요하다.
+firstIdea: |
+  두 변 $b, c$ 와 끼인각 $A$ 를 알면 넓이는 $\dfrac{1}{2}bc\sin A$ 다. 코사인이 주어졌으므로 사인으로 바꾸는 것이 첫 단계다.
+steps:
+  - title: 사인값을 구한다
+    body: |
+      $\sin(\angle\mathrm{BAC})=\sqrt{1-\dfrac{9}{25}}=\dfrac{4}{5}$
+    why: |
+      코사인이 음수라 둔각이지만, 삼각형의 내각은 사인이 항상 양수다.
+  - title: 넓이를 계산한다
+    body: |
+      $\dfrac{1}{2}\times5\times6\times\dfrac{4}{5}=12$
+    why: |
+      주어진 두 변 AB, AC가 각 A를 끼고 있다.
+pitfalls:
+  - |
+    코사인이 음수라서 사인도 $-\dfrac{4}{5}$ 로 두는 실수. 넓이가 음수가 되면 부호를 다시 확인한다.
+related: [2027-suneung-math-10]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }

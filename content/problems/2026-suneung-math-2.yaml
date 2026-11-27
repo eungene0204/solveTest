@@ -1,0 +1,55 @@
+exam: { year: 2026, kind: suneung, subject: math, part: common }
+number: 2
+paperType: odd
+paperPage: 1
+paperCrop: [0.099, 0.508, 0.492, 0.596]   # 원문 대조용 영역 (쪽 대비 비율 x0, y0, x1, y1)
+problem:
+  body: |
+    함수 $f(x)=3x^3+4x+1$ 에 대하여 $\displaystyle\lim_{h\to0}\frac{f(1+h)-f(1)}{h}$ 의 값은? [2점]
+  choices: ["7", "9", "11", "13", "15"]
+format: choice
+answer:
+  value: "13"
+  choice: 4
+status: published
+difficulty: basic
+concepts:
+  - { label: 미분계수의 정의, course2015: 수학Ⅱ, course2022: 미적분Ⅰ }
+hint: |
+  주어진 극한식이 어떤 값의 정의와 똑같은 모양인지 먼저 알아보자.
+firstIdea: |
+  $\displaystyle\lim_{h\to0}\frac{f(1+h)-f(1)}{h}$ 는 미분계수 $f'(1)$ 의 정의 그 자체다. 극한을 직접 계산하지 않고 도함수에 1을 넣으면 된다.
+steps:
+  - title: 극한식을 미분계수로 바꾼다
+    body: |
+      $$
+      \lim_{h\to0}\frac{f(1+h)-f(1)}{h}=f'(1)
+      $$
+    why: |
+      $x=1$ 에서 $h$ 만큼 움직였을 때의 평균변화율의 극한이 미분계수의 정의다.
+  - title: 도함수에 대입한다
+    body: |
+      $f'(x)=9x^2+4$ 이므로 $f'(1)=9+4=13$.
+    why: |
+      다항함수는 각 항을 $x^n\to nx^{n-1}$ 로 미분하고, 상수항 1은 사라진다.
+pitfalls:
+  - |
+    $f'(1)$ 대신 $f(1)=8$ 을 계산하는 실수. 극한식은 함숫값이 아니라 미분계수를 뜻한다.
+  - |
+    $3x^3$ 을 미분해 $3x^2$ 으로 쓰는 실수. 계수 3에 지수 3을 곱해 $9x^2$ 이다.
+related: [2027-suneung-math-2]
+reviews:
+  - step: answer-check
+    by: Claude
+    date: 2026-11-27
+    note: 평가원 2026학년도 수학 정답표(홀·짝수형)와 값·선택지 번호 대조 일치.
+  - step: solution-review
+    by: Claude
+    date: 2026-11-27
+    note: 원문 대조 이미지와 문제 본문·그림 한 줄씩 대조 일치. 단계별 식 변형과 자주 틀리는 지점의 수치를 다시 계산해 확인
+  - step: mobile-preview
+    by: Claude
+    date: 2026-11-27
+    note: 375px 헤드리스 검사(힌트·풀이·정답 펼친 상태) 가로 넘침 없음, 문제 화면 캡처 확인
+changelog:
+  - { date: 2026-11-27, note: 최초 공개 }
